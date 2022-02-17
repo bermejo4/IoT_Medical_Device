@@ -56,7 +56,7 @@ def pulse_sensor():
       signal_value = pulse_sensor.read_u16()
     
       print(signal_value)
-      utime.sleep(0.01)
+      utime.sleep(0.04)
       
 
 def temperature2():
