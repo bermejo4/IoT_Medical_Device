@@ -48,15 +48,15 @@ def pulse_sensor():
     #LED_on_board = machine.Pin(25, machine.Pin.OUT)
     #signal=machine.ADC(pulse_sensor) # holds the incoming raw data. Signal value can range from 0-1024
     #signal.atten(machine.ADC.ATTN_11DB)
-    pulse_sensor=machine.ADC(27)
+    pulse_sensor=machine.ADC(2)
     conversion_factor = 3.3 / (65535)
     
     
     while True:
-      signal_value = pulse_sensor.read_u16()
+      signal_value = pulse_sensor.read_u16()*conversion_factor
     
       print(signal_value)
-      utime.sleep(0.04)
+      utime.sleep(0.05)
       
 
 def temperature2():
