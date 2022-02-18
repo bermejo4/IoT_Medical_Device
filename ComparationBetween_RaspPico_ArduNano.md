@@ -2,7 +2,7 @@
 
 |  Commparation | Raspberry Pico | Arduino Nano |
 | -- | -- | -- |
-| Price | 5€ | 18€ |
+| Price | 6 € | 18 € |
 | MCU Chip | Dual Core (Rp2040) | One Core (ATmega328) |
 | Clock| Flexible 133 MHz | 16 MHz |
 | SRAM | 264 KB | 2 KB |
