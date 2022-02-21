@@ -88,18 +88,24 @@ def temperature():
         utime.sleep(1)
         
 def ad8232():
-    ecg_pin_output=machine.ADC(26)
-    lo_plus=machine.Pin(21, machine.Pin.IN, machine.Pin.PULL_UP).value()
-    lo_minus=machine.Pin(20, machine.Pin.IN, machine.Pin.PULL_UP).value()
+    ecg_pin_output=machine.ADC(0)
+    lo_plus=machine.Pin(13, machine.Pin.IN, machine.Pin.PULL_UP).value()
+    lo_minus=machine.Pin(12, machine.Pin.IN, machine.Pin.PULL_UP).value()
     
     while True:
-        print('lo+: '+str(lo_plus))
-        if lo_plus==1 or lo_minus==1:
-            print("!")
-        else:
-            signal_value_ecg = ecg_pin_output.read_u16() 
-            print(signal_value_ecg)
-            utime.sleep(0.1)
+        #print('lo+: '+str(lo_plus))
+        #if lo_plus==1 or lo_minus==1:
+           # print("!")
+       # else:
+        signal_value_ecg = ecg_pin_output.read_u16()
+        if signal_value_ecg>64000 and signal_value_ecg<65000:
+            if signal_value_ecg>64500 and signal_value_ecg<65000:
+                print(signal_value_ecg)
+                utime.sleep(0.04)
+            else:
+                print(signal_value_ecg)
+                utime.sleep(0.04)
+                
 
         
 if __name__ == "__main__":
@@ -110,11 +116,11 @@ if __name__ == "__main__":
     #dht_sensor=DHT22(dht_data,Pin(14,Pin.OUT),dht11=True)
 
     #--------------
-    pulse_sensor()
+    #pulse_sensor()
     #--------------
     #temperature2()
     #--------------
-    #ad8232()
+    ad8232()
     #--------------
     
     server_ip="192.168.23.227"
