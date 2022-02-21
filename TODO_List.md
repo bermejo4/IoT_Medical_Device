@@ -16,7 +16,9 @@ TO DO LIST:
 
 - ~~Comprobar el mpu6050 en otra placa o probar otro osciloscopio en la placa, alguno falla al intentar leer el uno sobre el otro.~~ Actualización: No funciona tampoco. Pasar al siguiente paso.
 
-- ~~Probar el mpu6050 en Arduino.~~ Actualización:Si que funciona en arduino.
+- ~~Probar el mpu6050 en Arduino.~~ Actualización:Si que funciona en arduino. Conclusión: No funciona el código.
+
+- ~~Probar otro código.~~ Actualización: Ya funciona con otro código.
 
 - Escribir el código para obtener la temperatura de la placa.
 

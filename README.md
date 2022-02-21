@@ -9,6 +9,7 @@
 5. Software y librerías de cada sensor:
     - Pulsómetro. (si)
     - Temperatura. (si)
+    - Temperatura interna del mcu. (si)
     - Ecg. (si)
     - Acelerometro.(si)
     - Emg.(no)
@@ -16,8 +17,9 @@
 6. Datos obtenidos de los sensores con sentido?:
     - Pulsómetro. (más o menos, hay que amplificar la señal para ciertas personas, procesado post recogida)
     - Temperatura. (si)
+    - Temperatura interna del mcu. (si)
     - Ecg. (no)
-    - Acelerometro.(funcionó, pero ahora da error)
+    - Acelerometro.(si)
     - Emg.(no)
     - Oxímetro. (no)
 7. Empaquetado de datos en variable para envío al servidor.(no)

@@ -17,3 +17,6 @@
 
 - No hay modulo de oximetría en el mercado, el único que existe son todos malos y se ha dejado de fabricar.
   - Solución: Pedir uno por aliexpress.
+
+- No funciona el módulo MPU6050 que hace de acelerometro. Funcionó un día, pero luego ya no funcionaba. Probé a cambiar de modulo mpu6050, pero daba el mismo error, probé a cambiar de placa raspberry pi pico, pero igualmente daba el mismo error, probé a cambiar el mpu5060 a Arduino y funcionó, por lo tanto concluí que el error estaba en el código. 
+  - Solución: Encontré otro código compatible tanto con raspberry pi pico como con el módulo MPU6050.
