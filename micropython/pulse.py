@@ -87,6 +87,17 @@ def temperature():
             print(ds_sensor.read_temp(rom))
         utime.sleep(1)
         
+        
+def temperature_mcu():
+    sensortemp = machine.ADC(4)
+    factorconversion = 3.3 / 65365
+    while True:
+     # VARIABLE CON VALOR EN BRUTO DE LA TEMPERATURA
+     rawValue = sensortemp.read_u16() * factorconversion
+     temperatura = 27 - (rawValue - 0.706) / 0.001721
+     print(temperatura)
+     utime.sleep(1)
+        
 def ad8232():
     ecg_pin_output=machine.ADC(0)
     lo_plus=machine.Pin(13, machine.Pin.IN, machine.Pin.PULL_UP).value()
@@ -120,8 +131,9 @@ if __name__ == "__main__":
     #--------------
     #temperature2()
     #--------------
-    ad8232()
+    #ad8232()
     #--------------
+    temperature_mcu()
     
     server_ip="192.168.23.227"
     server_port=9999
