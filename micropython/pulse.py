@@ -402,7 +402,7 @@ def pulse_sensor():
       
 
 def temperature2():
-    ow = onewire.OneWire(Pin(14)) #Prepara GPIO4 para usar con OneWire
+    ow = onewire.OneWire(Pin(13)) #Prepara GPIO4 para usar con OneWire
     sensor = DS18X20(ow) #define un sensor en ese pin
     direcciones = sensor.scan()  #Lee el ID del sensor conectado
     id=direcciones[0]
@@ -478,6 +478,41 @@ def acelerometer():
         print("X:{:.2f}  Y:{:.2f}  Z:{:.2f}".format(g.Gx,g.Gy,g.Gz))
     
                 
+class pico_data:
+    def __init__(self, temp=None, temp_mcu=None, pulse_sig=None, cord_x=None, cord_y=None, cord_z=None):
+        self.temp = temp
+        self.temp_mcu = temp_mcu
+        self.pulse_sig=pulse_sig
+        self.cord_x=cord_x
+        self.cord_y=cord_y
+        self.cord_z=cord_z
+        
+    def JSON_transform():
+        data_string="{"+"\"Temp\":\""+str(temp)+"\","+"\"TempMcu\":\""+str(temp_mcu)+"\"}"
+        return data_string
+    
+def data_collector():
+    #INICIALIZACIÓN DEL OBJETO pico
+    pico=pico_data()
+    #------------------
+    #TEMPERATURA DEL SENSOR
+    ow = onewire.OneWire(Pin(13)) #Prepara GPIO4 para usar con OneWire
+    sensor = DS18X20(ow) #define un sensor en ese pin
+    direcciones = sensor.scan()  #Lee el ID del sensor conectado
+    id=direcciones[0]
+    #Pasa el ID a formato de texto e imprime
+    idHex = binascii.hexlify(bytearray(id))
+    print ("ID=",idHex)
+    #Lee e imprime la temperatura cada 1 segundo
+    #while (True):
+    sensor.convert_temp ()
+        #sleep (1)
+    temperatura = sensor.read_temp (id)
+        #print (temperatura)
+    pico.temp=temperatura
+    #------------------
+    
+        
 
         
 if __name__ == "__main__":
@@ -495,7 +530,10 @@ if __name__ == "__main__":
     #ad8232()
     #--------------
     #temperature_mcu()
-    acelerometer()
+    #--------------
+    #acelerometer()
+    #--------------
+    data_collector()
     
     server_ip="192.168.23.227"
     server_port=9999
