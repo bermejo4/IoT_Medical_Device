@@ -488,8 +488,14 @@ class pico_data:
         self.cord_z=cord_z
         
     def JSON_transform(self):
-        data_string="{"+"\"Temp\":\""+str(self.temp)+"\","+"\"TempMcu\":\""\
-                     +str(self.temp_mcu)+"\", \"PulseSig\":"+str(self.pulse_sig)+"}"
+        data_string="{"\
+                     +"\"Temp\":\""+str(self.temp)+"\""\
+                     +",\"TempMcu\":\""+str(self.temp_mcu)+"\""\
+                     +",\"PulseSig\":\""+str(self.pulse_sig)+"\""\
+                     +",\"Acel_x\":\""+str(self.cord_x)+"\""\
+                     +",\"Acel_y\":\""+str(self.cord_y)+"\""\
+                     +",\"Acel_z\":\""+str(self.cord_z)+"\""\
+                     +"}"
         return data_string
     
 def data_collector():
@@ -534,20 +540,22 @@ def data_collector():
     mpu.setSampleRate(40)
     mpu.setGyroResolution(250)
     mpu.setGResolution(2)
-    #while True:
-    if UseFifo:
-        byteCount = mpu.readFifoCount()
-        if byteCount>= 14:
-            g = mpu.convertData(mpu.readDataFromFifo(14))
-        #else:
-            #continue
-    else:
-        g=mpu.readData()
-        #utime.sleep_ms(25)
+    while True:
+        if UseFifo:
+            byteCount = mpu.readFifoCount()
+            if byteCount>= 14:
+                g = mpu.convertData(mpu.readDataFromFifo(14))
+            else:
+                continue
+        else:
+            g=mpu.readData()
+            #utime.sleep_ms(25)
         pico.cord_x=g.Gx
         pico.cord_y=g.Gy
         pico.cord_z=g.Gz
         #print("X:{:.2f}  Y:{:.2f}  Z:{:.2f}".format(g.Gx,g.Gy,g.Gz))
+        break
+    
     #-----------------------------------------   
     #print(pico.temp)
     #print(pico.temp_mcu)
