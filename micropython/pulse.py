@@ -436,8 +436,8 @@ def temperature_mcu():
     while True:
      # VARIABLE CON VALOR EN BRUTO DE LA TEMPERATURA
      rawValue = sensortemp.read_u16() * factorconversion
-     temperatura = 27 - (rawValue - 0.706) / 0.001721
-     print(temperatura)
+     temperatura_mcu = 27 - (rawValue - 0.706) / 0.001721
+     print(temperatura_mcu)
      utime.sleep(1)
         
 def ad8232():
@@ -487,15 +487,16 @@ class pico_data:
         self.cord_y=cord_y
         self.cord_z=cord_z
         
-    def JSON_transform():
-        data_string="{"+"\"Temp\":\""+str(temp)+"\","+"\"TempMcu\":\""+str(temp_mcu)+"\"}"
+    def JSON_transform(self):
+        data_string="{"+"\"Temp\":\""+str(self.temp)+"\","+"\"TempMcu\":\""\
+                     +str(self.temp_mcu)+"\", \"PulseSig\":"+str(self.pulse_sig)+"}"
         return data_string
     
 def data_collector():
     #INICIALIZACIÓN DEL OBJETO pico
     pico=pico_data()
-    #------------------
-    #TEMPERATURA DEL SENSOR
+    #--------------------------------------------------
+    #SENSOR TEMPERATURE
     ow = onewire.OneWire(Pin(13)) #Prepara GPIO4 para usar con OneWire
     sensor = DS18X20(ow) #define un sensor en ese pin
     direcciones = sensor.scan()  #Lee el ID del sensor conectado
@@ -510,10 +511,51 @@ def data_collector():
     temperatura = sensor.read_temp (id)
         #print (temperatura)
     pico.temp=temperatura
-    #------------------
+    #--------------------------------------------------
+    #MCU TEMPERATURE
+    sensortemp = machine.ADC(4)
+    factorconversion = 3.3 / 65365
+    rawValue = sensortemp.read_u16() * factorconversion
+    temperatura_mcu = 27 - (rawValue - 0.706) / 0.001721
+    pico.temp_mcu=temperatura_mcu
+    #----------------------------------------------------
+    #PULSE SIGNAL
+    pulse_sensor=machine.ADC(2)
+    conversion_factor = 3.3 / (65535)
+    #while True:
+    signal_value = pulse_sensor.read_u16()*conversion_factor
+    pico.pulse_sig=signal_value
+      #print(signal_value)
+      #utime.sleep(0.05)
+    #----------------------------------------------------
+    #ACELEROMETER
+    mpu = MPU6050()
+    mpu.enableFifo(UseFifo)
+    mpu.setSampleRate(40)
+    mpu.setGyroResolution(250)
+    mpu.setGResolution(2)
+    #while True:
+    if UseFifo:
+        byteCount = mpu.readFifoCount()
+        if byteCount>= 14:
+            g = mpu.convertData(mpu.readDataFromFifo(14))
+        #else:
+            #continue
+    else:
+        g=mpu.readData()
+        #utime.sleep_ms(25)
+        pico.cord_x=g.Gx
+        pico.cord_y=g.Gy
+        pico.cord_z=g.Gz
+        #print("X:{:.2f}  Y:{:.2f}  Z:{:.2f}".format(g.Gx,g.Gy,g.Gz))
+    #-----------------------------------------   
+    #print(pico.temp)
+    #print(pico.temp_mcu)
+    print(pico.JSON_transform())
     
-        
 
+
+    
         
 if __name__ == "__main__":
 #    from machine import Pin
