@@ -623,7 +623,7 @@ if __name__ == "__main__":
         string_to_send=""
         string_to_send=str(data_collector())
         #utime.sleep_ms(5)
-        utime.sleep_ms(int((1/FREQUENCY_SEND)*1000))
+        #utime.sleep_ms(int((1/FREQUENCY_SEND)*1000))
         #print('Enter something:')
         #msg = input()
         #sendCMD_waitResp('AT+CIPSTART="TCP","192.168.12.147",9999\r\n')
