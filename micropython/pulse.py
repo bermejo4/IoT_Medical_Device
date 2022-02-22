@@ -617,26 +617,9 @@ if __name__ == "__main__":
     espSend()
     
 #------------NO TOCAR------------------    
-    while True:
-        T,H = dht_sensor.read()
-        if T is None:
-            print(" sensor error")
-        else:
-            print("{:3.1f}'C  {:3.1f}%".format(T,H))
-            cadena="{"+"\"T\":\""+str(T)+"\","+"\"H\":\""+str(H)+"\"}"
-        #DHT22 not responsive if delay to short
-        utime.sleep_ms((1/FREQUENCY_SEND)*1000)
-        #print('Enter something:')
-        #msg = input()
-        #sendCMD_waitResp('AT+CIPSTART="TCP","192.168.12.147",9999\r\n')
-        sendCMD_waitResp('AT+CIPSTART="TCP","' +
-                     server_ip +
-                     '",' +
-                     str(server_port) +
-                     '\r\n')
-        espSend(cadena)
+
 #-----------------------------------------------------        
-        while True:
+    while True:
         string_to_send=data_collector()
         utime.sleep_ms(5)
         #print('Enter something:')
@@ -647,4 +630,5 @@ if __name__ == "__main__":
                      '",' +
                      str(server_port) +
                      '\r\n')
+        print("enviando:"+string_to_send)
         espSend(string_to_send)
