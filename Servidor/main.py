@@ -46,12 +46,15 @@ while True:
     #print('Servidor escuchando en el puerto: '+str(server.PORT_ADDRESS))
     #conexion, CLIENT_ADDRESS=socketTCP.accept()
     solicitud=conexion.recv(20)
-    temp_hum=solicitud.decode()
-    temp_hum_json=json.loads(temp_hum)
-    print('RECIBOO:'+str(temp_hum))
+    data_from_pico=solicitud.decode()
+    data_json=json.loads(data_from_pico)
+    print('RECIBOO:'+str(data_from_pico))
 
-    print('Temperatura: '+temp_hum_json["T"]+"ºC")
-    print('Humedad: '+temp_hum_json["H"]+"%")
+    print('Temperature: '+data_json["Temp"]+"ºC")
+    print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
+    print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
+    print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
+
 
     #if solicitud.decode()=='FECHA':
         #print('He recibido FECHA')

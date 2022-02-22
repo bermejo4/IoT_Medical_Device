@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.23.227"
+    server_ip="192.168.113.227"
     server_port=9999
 
     print()
@@ -647,4 +647,4 @@ if __name__ == "__main__":
                      '",' +
                      str(server_port) +
                      '\r\n')
-        espSend(cadena)
+        espSend(string_to_send)
