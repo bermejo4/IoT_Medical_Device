@@ -572,7 +572,7 @@ if __name__ == "__main__":
 #    import utime
     #dht_data = Pin(15,Pin.IN,Pin.PULL_UP)
     #dht_sensor=DHT22(dht_data,Pin(14,Pin.OUT),dht11=True)
-    FREQUENCY_SEND=200#Hz -> 5ms
+    FREQUENCY_SEND=2000#Hz -> 5ms
     #--------------
     #pulse_sensor()
     #--------------
@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.113.227"
+    server_ip="192.168.31.227"
     server_port=9999
 
     print()
@@ -620,8 +620,10 @@ if __name__ == "__main__":
 
 #-----------------------------------------------------        
     while True:
-        string_to_send=data_collector()
-        utime.sleep_ms(5)
+        string_to_send=""
+        string_to_send=str(data_collector())
+        #utime.sleep_ms(5)
+        utime.sleep_ms(int((1/FREQUENCY_SEND)*1000))
         #print('Enter something:')
         #msg = input()
         #sendCMD_waitResp('AT+CIPSTART="TCP","192.168.12.147",9999\r\n')

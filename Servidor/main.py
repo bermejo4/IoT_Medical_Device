@@ -45,7 +45,7 @@ while True:
     # -------------------------------------------------------------------------------------
     #print('Servidor escuchando en el puerto: '+str(server.PORT_ADDRESS))
     #conexion, CLIENT_ADDRESS=socketTCP.accept()
-    solicitud=conexion.recv(300)
+    solicitud=conexion.recv(400)
     print(solicitud)
     data_from_pico=solicitud.decode()
     print(data_from_pico)
