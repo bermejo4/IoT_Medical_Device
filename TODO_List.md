@@ -12,7 +12,7 @@ TO DO LIST:
 
 - ~~Comparación entre Arduino Nano y Raspberry Pico.~~
 
-- Soldar bien la placa ad8232.
+- ~~Soldar bien la placa ad8232~~.
 
 - ~~Comprobar el mpu6050 en otra placa o probar otro osciloscopio en la placa, alguno falla al intentar leer el uno sobre el otro.~~ Actualización: No funciona tampoco. Pasar al siguiente paso.
 
@@ -20,6 +20,17 @@ TO DO LIST:
 
 - ~~Probar otro código.~~ Actualización: Ya funciona con otro código.
 
-- Escribir el código para obtener la temperatura de la placa.
+- ~~Escribir el código para obtener la temperatura de la placa.~~
 
 - Escibir código que amplifique la señal del pulsómetro.
+
+- Comparación de pico+esp8266 con arduinos especializados en iot.
+
+- Hacer un registro de costes.
+
+- Averiguar como se puede sacar el consumo de todo el conjunto para la compra de la batería.
+
+- Hacer el diagrama de frizig, ir pensando en como enajar todo para que ocupe el menor espacio posible. 
+
+- Ir definiendo objetivos del proyecto.
+
