@@ -7,4 +7,11 @@
 - Small dimensions. 
 - Show the information collected in the server.
 
-## Steps:
+## Steps: 
+[Steps.md](https://github.com/bermejo4/Proyectos2/blob/main/Steps.md)
+
+## Costs:
+[Costs.md](https://github.com/bermejo4/Proyectos2/blob/main/Costs.md)
+
+## Comparation between Raspberry Pico and Arduino Nano:
+[ComparationBetween_RaspPico_ArduNano.md](https://github.com/bermejo4/Proyectos2/blob/main/ComparationBetween_RaspPico_ArduNano.md)

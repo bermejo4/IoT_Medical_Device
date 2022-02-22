@@ -1,3 +1,8 @@
+
+# Costs:
+--------
+### Main costs of the project:
+
 |  Component | Price | Source |
 | -- | -- | -- |
 | Raspberry Pico | 4,20 € | https://www.kubii.es/raspberry-pi-3-2-b/3205-raspberry-pi-pico-0728886755172.html?src=raspberrypi |
