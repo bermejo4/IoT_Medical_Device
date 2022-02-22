@@ -21,4 +21,4 @@
 - No funciona el módulo MPU6050 que hace de acelerometro. Funcionó un día, pero luego ya no funcionaba. Probé a cambiar de modulo mpu6050, pero daba el mismo error, probé a cambiar de placa raspberry pi pico, pero igualmente daba el mismo error, probé a cambiar el mpu5060 a Arduino y funcionó, por lo tanto concluí que el error estaba en el código. 
   - Solución: Encontré otro código compatible tanto con raspberry pi pico como con el módulo MPU6050.
 
-- El servidor no podía decodificar la información que le llegaba. Resulta que los pines tx y rx de la pico y del esp8266 estaban mal emparejados. La conexion estre ellos debe ser de tx-rx y rx-tx, ;y no tx-tx y rx-rx. Solución: cambiar los cables emparejados.
+- El servidor no podía decodificar la información que le llegaba. Los pines tx y rx de la pico y del esp8266 estaban mal emparejados. La conexion estre ellos debe ser de tx-rx y rx-tx, ;y no tx-tx y rx-rx. Solución: cambiar los cables emparejados.

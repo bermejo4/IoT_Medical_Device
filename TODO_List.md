@@ -26,11 +26,13 @@ TO DO LIST:
 
 - Comparación de pico+esp8266 con arduinos especializados en iot.
 
-- Hacer un registro de costes.
+- ~~Hacer un registro de costes.~~
 
 - Averiguar como se puede sacar el consumo de todo el conjunto para la compra de la batería.
 
-- Hacer el diagrama de frizig, ir pensando en como enajar todo para que ocupe el menor espacio posible. 
+- Hacer el diagrama de frizig, ir pensando en como encajar todo para que ocupe el menor espacio posible. 
 
 - Ir definiendo objetivos del proyecto.
+
+- Hacer que el tiempo de envío entre la placa y el servidor sea menor.udp?
 

@@ -18,7 +18,7 @@
 
 ## Pins-modules diagram:
 
-capture
+[](PinOut_modules.png)
 
 ## Micropython code running on the Raspberry Pico:
 [Pulse.py](https://github.com/bermejo4/Proyectos2/blob/main/micropython/pulse.py)
