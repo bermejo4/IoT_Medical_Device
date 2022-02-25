@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.91.227"
+    server_ip="192.168.197.227"
     server_port=9999
 
     print()
