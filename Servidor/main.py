@@ -49,13 +49,13 @@ while True:
     print(solicitud)
     data_from_pico=solicitud.decode()
     print(data_from_pico)
-    data_json=json.loads(data_from_pico)
-    print('RECIBOO:'+str(data_from_pico))
-
-    print('Temperature: '+data_json["Temp"]+"ºC")
-    print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
-    print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
-    print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
+    if "{" in data_from_pico:
+        data_json=json.loads(data_from_pico)
+        print('RECIBOO:'+str(data_from_pico))
+        print('Temperature: '+data_json["Temp"]+"ºC")
+        print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
+        print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
+        print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
 
 
     #if solicitud.decode()=='FECHA':

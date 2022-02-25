@@ -353,13 +353,13 @@ class MPU6050:
 UseFifo = True
 
 
-def sendCMD_waitResp(cmd, uart=machine.UART(0, baudrate=115200), timeout=2000):
+def sendCMD_waitResp(cmd, uart=machine.UART(0, baudrate=115200), timeout=100):
     print("CMD: " + cmd)
     uart.write(cmd)
     waitResp(uart, timeout)
     print()
     
-def waitResp(uart=machine.UART(0, baudrate=115200), timeout=2000):
+def waitResp(uart=machine.UART(0, baudrate=115200), timeout=100):
     prvMills = utime.ticks_ms()
     resp = b""
     while (utime.ticks_ms()-prvMills)<timeout:
@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.184.227"
+    server_ip="192.168.63.227"
     server_port=9999
 
     print()
