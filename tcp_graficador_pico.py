@@ -30,12 +30,18 @@ class Servidor:
 
 class DataPico:
     def __init__(self):
-        self.temp_array=[]
-        self.temp_mcu_array=[]
-        self.pulse_array=[]
-        self.x_acel_array=[]
-        self.y_acel_array=[]
-        self.z_acel_array=[]
+        self.temp_array_y = []
+        self.temp_array_x = []
+        self.temp_mcu_array_y = []
+        self.temp_mcu_array_x = []
+        self.pulse_array_y=[]
+        self.pulse_array_x = []
+        self.x_acel_array_y=[]
+        self.x_acel_array_x = []
+        self.y_acel_array_y=[]
+        self.y_acel_array_x=[]
+        self.z_acel_array_y=[]
+        self.z_acel_array_x = []
 
 server=Servidor()
 socketTCP=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -46,6 +52,48 @@ print('Servidor escuchando en el puerto: ' + str(server.PORT_ADDRESS))
 conexion, CLIENT_ADDRESS = socketTCP.accept()
 
 data_pico_saved=DataPico()
+
+plt.style.use('seaborn-notebook')
+x_data = []
+y_data = []
+
+x_data1 = []
+y_data1 = []
+
+figure1 = pyplot.figure(1)
+line, = pyplot.plot(x_data, y_data, '-')
+figure2 = pyplot.figure(2)
+line1, = pyplot.plot(x_data1, y_data1, '-')
+
+def graph_temp(frame):
+    if len(x_data)>10:
+        x_data.pop(0)
+        y_data.pop(0)
+    x_data.append(frame)
+    y_data.append(data_pico_saved.temp_array_y[frame])
+    line.set_data(x_data, y_data)
+    figure1.gca().relim()
+    figure1.gca().autoscale_view()
+    return line,
+
+def graph_temp_mcu(frame):
+    if len(x_data)>10:
+        x_data1.pop(0)
+        y_data1.pop(0)
+    x_data1.append(frame)
+    y_data1.append(data_pico_saved.temp_mcu_array_y[frame])
+    line1.set_data(x_data1, y_data1)
+    figure2.gca().relim()
+    figure2.gca().autoscale_view()
+    return line1,
+
+
+animacion4 = FuncAnimation(figure2, graph_temp_mcu, interval=1000)
+animacion3 = FuncAnimation(figure1, graph_temp, interval=1000)
+pyplot.show()
+
+
+
 
 while True:
     solicitud=''
@@ -70,14 +118,14 @@ while True:
     if "{" in data_from_pico:
         data_json=json.loads(data_from_pico)
         print('RECIBOO:'+str(data_from_pico))
-        data_pico_saved.temp_array.append(data_json["Temp"])
+        data_pico_saved.temp_array_y.append(data_json["Temp"])
         data_pico_saved.temp_mcu_array.append(data_json["TempMcu"])
         data_pico_saved.pulse_array.append(data_json["PulseSig"])
         data_pico_saved.x_acel_array.append(data_json["Acel_x"])
         data_pico_saved.y_acel_array.append(data_json["Acel_y"])
         data_pico_saved.z_acel_array.append(data_json["Acel_z"])
         print("Temp:")
-        print(data_pico_saved.temp_array)
+        print(data_pico_saved.temp_array_y)
         print("temp_mcu:")
         print(data_pico_saved.temp_mcu_array)
         print("pulse:")
@@ -92,3 +140,4 @@ while True:
         #print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
         #print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
         #print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
+

@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.197.227"
+    server_ip="192.168.2.227"
     server_port=9999
 
     print()
@@ -605,7 +605,7 @@ if __name__ == "__main__":
     print(uart0)
     
     sendCMD_waitResp('AT\r\n')          #Test AT startup
-    sendCMD_waitResp('AT+CWLAP\r\n', timeout=5000) #List available APs
+    #sendCMD_waitResp('AT+CWLAP\r\n', timeout=5000) #List available APs
     sendCMD_waitResp('AT+CWJAP="Rivendel","jeronimo"\r\n', timeout=5000) #Connect to AP
     sendCMD_waitResp('AT+CIFSR\r\n')    #Obtain the Local IP Address
     #sendCMD_waitResp('AT+CIPSTART="TCP","192.168.12.147",9999\r\n')
@@ -616,8 +616,6 @@ if __name__ == "__main__":
                  '\r\n')
     espSend()
     
-#------------NO TOCAR------------------    
-
 #-----------------------------------------------------        
     while True:
         string_to_send=""
