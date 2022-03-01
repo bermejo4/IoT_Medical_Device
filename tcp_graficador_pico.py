@@ -19,6 +19,9 @@ import matplotlib.animation as animation
 import matplotlib; matplotlib.use("TkAgg")
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+from matplotlib.animation import FuncAnimation
 
 class Servidor:
     def __init__(self):
@@ -52,6 +55,8 @@ print('Servidor escuchando en el puerto: ' + str(server.PORT_ADDRESS))
 conexion, CLIENT_ADDRESS = socketTCP.accept()
 
 data_pico_saved=DataPico()
+data_pico_saved.temp_array_y.append(20)
+data_pico_saved.temp_mcu_array_y.append(20)
 
 plt.style.use('seaborn-notebook')
 x_data = []
@@ -69,6 +74,7 @@ def graph_temp(frame):
     if len(x_data)>10:
         x_data.pop(0)
         y_data.pop(0)
+    print('frame:'+str(frame))
     x_data.append(frame)
     y_data.append(data_pico_saved.temp_array_y[frame])
     line.set_data(x_data, y_data)
@@ -77,7 +83,7 @@ def graph_temp(frame):
     return line,
 
 def graph_temp_mcu(frame):
-    if len(x_data)>10:
+    if len(x_data1)>10:
         x_data1.pop(0)
         y_data1.pop(0)
     x_data1.append(frame)
@@ -88,8 +94,8 @@ def graph_temp_mcu(frame):
     return line1,
 
 
-animacion4 = FuncAnimation(figure2, graph_temp_mcu, interval=1000)
-animacion3 = FuncAnimation(figure1, graph_temp, interval=1000)
+animacion4 = FuncAnimation(figure2, graph_temp_mcu, interval=5000)
+animacion3 = FuncAnimation(figure1, graph_temp, interval=5000)
 pyplot.show()
 
 
