@@ -9,6 +9,7 @@
     #print_hi('PyCharm')
 import socket
 import sys
+import threading
 from datetime import date
 from datetime import datetime
 import json
@@ -74,9 +75,10 @@ def graph_temp(frame):
     if len(x_data)>10:
         x_data.pop(0)
         y_data.pop(0)
-    print('frame:'+str(frame))
+    print('frame:'+str(frame)+', temp_array_y:'+str(data_pico_saved.temp_array_y))
+    print("\n")
     x_data.append(frame)
-    y_data.append(data_pico_saved.temp_array_y[frame])
+    y_data.append(float(data_pico_saved.temp_array_y[(len(data_pico_saved.temp_array_y)-1)]))
     line.set_data(x_data, y_data)
     figure1.gca().relim()
     figure1.gca().autoscale_view()
@@ -87,63 +89,64 @@ def graph_temp_mcu(frame):
         x_data1.pop(0)
         y_data1.pop(0)
     x_data1.append(frame)
-    y_data1.append(data_pico_saved.temp_mcu_array_y[frame])
+    y_data1.append(float(data_pico_saved.temp_mcu_array_y[(len(data_pico_saved.temp_array_y)-1)]))
     line1.set_data(x_data1, y_data1)
     figure2.gca().relim()
     figure2.gca().autoscale_view()
     return line1,
 
+def collector():
+    while True:
+        solicitud = ''
+        # ____________________________________________________________________________________
+        # | Esto de aqui abajo era el problema, cada vez que intentaba volver a conectarse se  |
+        # | bloqueaba el socket.                                                               |
+        # -------------------------------------------------------------------------------------
+        # print('Servidor escuchando en el puerto: '+str(server.PORT_ADDRESS))
+        # conexion, CLIENT_ADDRESS=socketTCP.accept()
+        solicitud = conexion.recv(400)
+        print("solicitud:" + str(solicitud))
+        print("\n")
+        data_from_pico = solicitud.decode()
+        # print(data_from_pico)
+        # data_json=json.loads(data_from_pico)
+        # print('RECIBOO:'+str(data_from_pico))
+        # data_pico_saved.temp_array[counter]=data_json["Temp"]
+        # print(data_pico_saved)
+        # print('Temperature: '+data_json["Temp"]+"ºC")
+        # print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
+        # print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
+        # print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
+        if "{" in data_from_pico:
+            data_json = json.loads(data_from_pico)
+            print('RECIBOO:' + str(data_from_pico))
+            data_pico_saved.temp_array_y.append(float(data_json["Temp"]))
+            data_pico_saved.temp_mcu_array_y.append(float(data_json["TempMcu"]))
+            data_pico_saved.pulse_array_y.append(float(data_json["PulseSig"]))
+            data_pico_saved.x_acel_array_y.append(float(data_json["Acel_x"]))
+            data_pico_saved.y_acel_array_y.append(float(data_json["Acel_y"]))
+            data_pico_saved.z_acel_array_y.append(float(data_json["Acel_z"]))
+            print("\n")
+            print("Temp:")
+            print(data_pico_saved.temp_array_y)
+            print("temp_mcu:")
+            print(data_pico_saved.temp_mcu_array_y)
+            print("pulse:")
+            print(data_pico_saved.pulse_array_y)
+            print("x_accel:")
+            print(data_pico_saved.x_acel_array_y)
+            print("y_accel:")
+            print(data_pico_saved.y_acel_array_y)
+            print("z_accel:")
+            print(data_pico_saved.z_acel_array_y)
+            # print('Temperature: '+data_json["Temp"]+"ºC")
+            # print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
+            # print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
+            # print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
 
-animacion4 = FuncAnimation(figure2, graph_temp_mcu, interval=5000)
-animacion3 = FuncAnimation(figure1, graph_temp, interval=5000)
+collecting_data=threading.Thread(target=collector)
+collecting_data.start()
+
+animacion4 = FuncAnimation(figure2, graph_temp_mcu, interval=1000)
+animacion3 = FuncAnimation(figure1, graph_temp, interval=1000)
 pyplot.show()
-
-
-
-
-while True:
-    solicitud=''
-    # ____________________________________________________________________________________
-    #| Esto de aqui abajo era el problema, cada vez que intentaba volver a conectarse se  |
-    #| bloqueaba el socket.                                                               |
-    # -------------------------------------------------------------------------------------
-    #print('Servidor escuchando en el puerto: '+str(server.PORT_ADDRESS))
-    #conexion, CLIENT_ADDRESS=socketTCP.accept()
-    solicitud=conexion.recv(400)
-    print(solicitud)
-    data_from_pico=solicitud.decode()
-    #print(data_from_pico)
-    #data_json=json.loads(data_from_pico)
-    #print('RECIBOO:'+str(data_from_pico))
-    #data_pico_saved.temp_array[counter]=data_json["Temp"]
-    #print(data_pico_saved)
-    #print('Temperature: '+data_json["Temp"]+"ºC")
-    #print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
-    #print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
-    #print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
-    if "{" in data_from_pico:
-        data_json=json.loads(data_from_pico)
-        print('RECIBOO:'+str(data_from_pico))
-        data_pico_saved.temp_array_y.append(data_json["Temp"])
-        data_pico_saved.temp_mcu_array.append(data_json["TempMcu"])
-        data_pico_saved.pulse_array.append(data_json["PulseSig"])
-        data_pico_saved.x_acel_array.append(data_json["Acel_x"])
-        data_pico_saved.y_acel_array.append(data_json["Acel_y"])
-        data_pico_saved.z_acel_array.append(data_json["Acel_z"])
-        print("Temp:")
-        print(data_pico_saved.temp_array_y)
-        print("temp_mcu:")
-        print(data_pico_saved.temp_mcu_array)
-        print("pulse:")
-        print(data_pico_saved.pulse_array)
-        print("x_accel:")
-        print(data_pico_saved.x_acel_array)
-        print("y_accel:")
-        print(data_pico_saved.y_acel_array)
-        print("z_accel:")
-        print(data_pico_saved.z_acel_array)
-        #print('Temperature: '+data_json["Temp"]+"ºC")
-        #print('Temperature from mcu: '+data_json["TempMcu"]+"ºC")
-        #print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
-        #print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
-
