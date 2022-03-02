@@ -8,21 +8,21 @@
 - Show the information collected in the server.
 
 ## Steps: 
-[Steps.md](https://github.com/bermejo4/Proyectos2/blob/main/Steps.md)
+[Steps.md](https://github.com/bermejo4/Proyectos2/blob/main/Documentation/Steps.md)
 
 ## Costs:
-[Costs.md](https://github.com/bermejo4/Proyectos2/blob/main/Costs.md)
+[Costs.md](https://github.com/bermejo4/Proyectos2/blob/main/Documentation/Costs.md)
 
 ## Comparation between Raspberry Pico and Arduino Nano:
-[ComparationBetween_RaspPico_ArduNano.md](https://github.com/bermejo4/Proyectos2/blob/main/ComparationBetween_RaspPico_ArduNano.md)
+[ComparationBetween_RaspPico_ArduNano.md](https://github.com/bermejo4/Proyectos2/blob/main/Documentation/ComparationBetween_RaspPico_ArduNano.md)
 
 ## Pins-modules diagram:
 
-![](PinOut_modules.png)
+![](Documentation/PinOut_modules.png)
 
 ## Micropython code running on the Raspberry Pico:
-[Pulse.py](https://github.com/bermejo4/Proyectos2/blob/main/micropython/pulse.py)
+[PicoClient/TCP_Send_info.py](https://github.com/bermejo4/Proyectos2/blob/main/PicoClient/TCP_Send_info.py)
 
 ## Server code:
-[Servidor/main.py ](https://github.com/bermejo4/Proyectos2/blob/main/Servidor/main.py)
+[Server/tcp_graficador_pico.py ](https://github.com/bermejo4/Proyectos2/blob/main/Server/tcp_graficador_pico.py)
 
