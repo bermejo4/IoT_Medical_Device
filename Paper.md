@@ -2,7 +2,9 @@
 -------
 ### Introduction:
 
-Nowadays everything is connected to Internet from a computer or server to a fridge or a car, and all these is known as Internet of Things, or also noted as IOT.
+Nowadays everything is connected to the Internet from a computer or server to a fridge or a house, going through different industries and work environments to places of leisure or our own homes, and all these are known as Internet of Things, or also denoted with its initials as IOT.
+
+
 
 ------- 
 ### Proporsal-platform:
