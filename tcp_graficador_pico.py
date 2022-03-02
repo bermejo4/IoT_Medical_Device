@@ -1,12 +1,4 @@
-# This is a sample Python script.
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-#def print_hi(name):
-    # Use a breakpoint in the code line_temp below to debug your script.
-    #print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-# Press the green button in the gutter to run the script.
-#if __name__ == '__main__':
-    #print_hi('PyCharm')
+#Bermejo4
 import socket
 import sys
 import threading
@@ -56,11 +48,15 @@ print('Servidor escuchando en el puerto: ' + str(server.PORT_ADDRESS))
 conexion, CLIENT_ADDRESS = socketTCP.accept()
 
 data_pico_saved=DataPico()
+
+#Initializing some data
 data_pico_saved.temp_array_y.append(20)
 data_pico_saved.temp_mcu_array_y.append(20)
 data_pico_saved.pulse_array_y.append(0)
 
 plt.style.use('seaborn-notebook')
+
+#Arrays for plotting in real time used in the
 x_data_temp_plot = []
 y_data_temp_plot = []
 
@@ -83,16 +79,22 @@ y_data_z_accel_plot = []
 figure_temp = pyplot.figure(1, figsize=(10,2))
 figure_temp.suptitle('Temperature', fontsize=10)
 figure_temp.canvas.manager.set_window_title('Temperature from sensor')
+ax_temp=figure_temp.gca()
+ax_temp.grid(axis='y', color='black')
 line_temp,= pyplot.plot(x_data_temp_plot, y_data_temp_plot, '-', color='orange')
 #Figure of MCU Temperature:
 figure_temp_mcu = pyplot.figure(2, figsize=(10,2))
 figure_temp_mcu.canvas.manager.set_window_title('MCU Temperature')
 figure_temp_mcu.suptitle('Temperature of the MCU RP2040')
+ax_temp_mcu=figure_temp_mcu.gca()
+ax_temp_mcu.grid(axis='y', color='black')
 line_temp_mcu, = pyplot.plot(x_data_temp_mcu_plot, y_data_temp_mcu_plot, '-', color='red')
 #Figure of Pulse:
 figure_pulse = pyplot.figure(3, figsize=(10,2))
 figure_pulse.canvas.manager.set_window_title('Pulse')
 figure_pulse.suptitle('Pulse signal from pulse sensor')
+ax_pulse=figure_pulse.gca()
+ax_pulse.grid(axis='y', color='black')
 line_pulse, = pyplot.plot(x_data_pulse_plot, y_data_pulse_plot, '-', color='green')
 #Figure of X component of the accelerometer:
 figure_x_accel = pyplot.figure(4, figsize=(4,2))
@@ -110,6 +112,7 @@ figure_z_accel.canvas.manager.set_window_title('Accelerometer(Z)')
 figure_z_accel.suptitle('Accelerometer z component')
 line_z_accel, = pyplot.plot(x_data_z_accel_plot, y_data_z_accel_plot, '-', color='purple')
 
+#Bermejo4
 def graph_temp(frame):
     if len(x_data_temp_plot)>20:
         x_data_temp_plot.pop(0)
@@ -176,7 +179,8 @@ def graph_z_accel(frame):
     figure_z_accel.gca().autoscale_view()
     return line_z_accel,
 
-
+#This funcion will be a thread to collect all the data that is received.
+#The other thread will be the plotting process, but that one must be in the main thread.
 def collector():
     while True:
         solicitud = ''
@@ -226,9 +230,12 @@ def collector():
             # print('Pulse signal: ' + data_json["PulseSig"] + " Volts")
             # print('Acelerometer: (' + data_json["Acel_x"] + ","+data_json["Acel_y"]+","+data_json["Acel_z"]+")")
 
+#The thread to receive the data start here
 collecting_data=threading.Thread(target=collector)
 collecting_data.start()
 
+#The following lines will be to plot in real time the data acquired from the thread "collector".
+#The main thread follow here
 temp_mcu_plot = FuncAnimation(figure_temp_mcu, graph_temp_mcu, interval=250)
 temp_plot = FuncAnimation(figure_temp, graph_temp, interval=250)
 pulse_plot=FuncAnimation(figure_pulse, graph_pulse, interval=250)
