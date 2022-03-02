@@ -80,32 +80,38 @@ x_data_z_accel_plot = []
 y_data_z_accel_plot = []
 
 #Figure of Temperature:
-figure_temp = pyplot.figure(1, figsize=(12,2))
+figure_temp = pyplot.figure(1, figsize=(10,2))
 figure_temp.suptitle('Temperature', fontsize=10)
 figure_temp.canvas.manager.set_window_title('Temperature from sensor')
 line_temp,= pyplot.plot(x_data_temp_plot, y_data_temp_plot, '-', color='orange')
 #Figure of MCU Temperature:
-figure_temp_mcu = pyplot.figure(2, figsize=(12,2))
-figure_temp.canvas.manager.set_window_title('MCU Temperature')
+figure_temp_mcu = pyplot.figure(2, figsize=(10,2))
+figure_temp_mcu.canvas.manager.set_window_title('MCU Temperature')
 figure_temp_mcu.suptitle('Temperature of the MCU RP2040')
 line_temp_mcu, = pyplot.plot(x_data_temp_mcu_plot, y_data_temp_mcu_plot, '-', color='red')
 #Figure of Pulse:
-figure_pulse = pyplot.figure(3, figsize=(12,2))
+figure_pulse = pyplot.figure(3, figsize=(10,2))
 figure_pulse.canvas.manager.set_window_title('Pulse')
 figure_pulse.suptitle('Pulse signal from pulse sensor')
 line_pulse, = pyplot.plot(x_data_pulse_plot, y_data_pulse_plot, '-', color='green')
 #Figure of X component of the accelerometer:
 figure_x_accel = pyplot.figure(4, figsize=(4,2))
-line_x_accel, = pyplot.plot(x_data_x_accel_plot, y_data_x_accel_plot, '-')
+figure_x_accel.canvas.manager.set_window_title('Accelerometer(X)')
+figure_x_accel.suptitle('Accelerometer x component')
+line_x_accel, = pyplot.plot(x_data_x_accel_plot, y_data_x_accel_plot, '-', color='purple')
 #Figure of Y component of the accelerometer:
 figure_y_accel = pyplot.figure(5, figsize=(4,2))
-line_y_accel, = pyplot.plot(x_data_y_accel_plot, y_data_y_accel_plot, '-')
+figure_y_accel.canvas.manager.set_window_title('Accelerometer(Y)')
+figure_y_accel.suptitle('Accelerometer y component')
+line_y_accel, = pyplot.plot(x_data_y_accel_plot, y_data_y_accel_plot, '-', color='purple')
 #Figure of Z component of the accelerometer:
 figure_z_accel = pyplot.figure(6, figsize=(4,2))
-line_z_accel, = pyplot.plot(x_data_z_accel_plot, y_data_z_accel_plot, '-')
+figure_z_accel.canvas.manager.set_window_title('Accelerometer(Z)')
+figure_z_accel.suptitle('Accelerometer z component')
+line_z_accel, = pyplot.plot(x_data_z_accel_plot, y_data_z_accel_plot, '-', color='purple')
 
 def graph_temp(frame):
-    if len(x_data_temp_plot)>10:
+    if len(x_data_temp_plot)>20:
         x_data_temp_plot.pop(0)
         y_data_temp_plot.pop(0)
     x_data_temp_plot.append(frame)
@@ -116,7 +122,7 @@ def graph_temp(frame):
     return line_temp,
 
 def graph_temp_mcu(frame):
-    if len(x_data_temp_mcu_plot)>10:
+    if len(x_data_temp_mcu_plot)>20:
         x_data_temp_mcu_plot.pop(0)
         y_data_temp_mcu_plot.pop(0)
     x_data_temp_mcu_plot.append(frame)
@@ -127,15 +133,48 @@ def graph_temp_mcu(frame):
     return line_temp_mcu,
 
 def graph_pulse(frame):
-    if len(x_data_pulse_plot)>10:
+    if len(x_data_pulse_plot)>20:
         x_data_pulse_plot.pop(0)
         y_data_pulse_plot.pop(0)
     x_data_pulse_plot.append(frame)
     y_data_pulse_plot.append(float(data_pico_saved.pulse_array_y[(len(data_pico_saved.pulse_array_y) - 1)]))
-    line_temp.set_data(x_data_pulse_plot, y_data_pulse_plot)
+    line_pulse.set_data(x_data_pulse_plot, y_data_pulse_plot)
     figure_pulse.gca().relim()
     figure_pulse.gca().autoscale_view()
     return line_pulse,
+
+def graph_x_accel(frame):
+    if len(x_data_x_accel_plot)>20:
+        x_data_x_accel_plot.pop(0)
+        y_data_x_accel_plot.pop(0)
+    x_data_x_accel_plot.append(frame)
+    y_data_x_accel_plot.append(float(data_pico_saved.x_acel_array_y[(len(data_pico_saved.x_acel_array_y) - 1)]))
+    line_x_accel.set_data(x_data_x_accel_plot, y_data_x_accel_plot)
+    figure_x_accel.gca().relim()
+    figure_x_accel.gca().autoscale_view()
+    return line_x_accel,
+
+def graph_y_accel(frame):
+    if len(x_data_y_accel_plot)>20:
+        x_data_y_accel_plot.pop(0)
+        y_data_y_accel_plot.pop(0)
+    x_data_y_accel_plot.append(frame)
+    y_data_y_accel_plot.append(float(data_pico_saved.y_acel_array_y[(len(data_pico_saved.y_acel_array_y) - 1)]))
+    line_y_accel.set_data(x_data_y_accel_plot, y_data_y_accel_plot)
+    figure_y_accel.gca().relim()
+    figure_y_accel.gca().autoscale_view()
+    return line_y_accel,
+
+def graph_z_accel(frame):
+    if len(x_data_z_accel_plot)>20:
+        x_data_z_accel_plot.pop(0)
+        y_data_z_accel_plot.pop(0)
+    x_data_z_accel_plot.append(frame)
+    y_data_z_accel_plot.append(float(data_pico_saved.z_acel_array_y[(len(data_pico_saved.z_acel_array_y) - 1)]))
+    line_z_accel.set_data(x_data_z_accel_plot, y_data_z_accel_plot)
+    figure_z_accel.gca().relim()
+    figure_z_accel.gca().autoscale_view()
+    return line_z_accel,
 
 
 def collector():
@@ -190,7 +229,11 @@ def collector():
 collecting_data=threading.Thread(target=collector)
 collecting_data.start()
 
-temp_mcu_plot = FuncAnimation(figure_temp_mcu, graph_temp_mcu, interval=1000)
-temp_plot = FuncAnimation(figure_temp, graph_temp, interval=1000)
-pulse_plot=FuncAnimation(figure_pulse, graph_pulse, interval=1000)
+temp_mcu_plot = FuncAnimation(figure_temp_mcu, graph_temp_mcu, interval=250)
+temp_plot = FuncAnimation(figure_temp, graph_temp, interval=250)
+pulse_plot=FuncAnimation(figure_pulse, graph_pulse, interval=250)
+x_accel_plot=FuncAnimation(figure_x_accel, graph_x_accel, interval=250)
+y_accel_plot=FuncAnimation(figure_y_accel, graph_y_accel, interval=250)
+z_accel_plot=FuncAnimation(figure_z_accel, graph_z_accel, interval=250)
+
 pyplot.show()
