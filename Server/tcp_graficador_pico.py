@@ -236,11 +236,11 @@ collecting_data.start()
 
 #The following lines will be to plot in real time the data acquired from the thread "collector".
 #The main thread follow here
-temp_mcu_plot = FuncAnimation(figure_temp_mcu, graph_temp_mcu, interval=250)
-temp_plot = FuncAnimation(figure_temp, graph_temp, interval=250)
-pulse_plot=FuncAnimation(figure_pulse, graph_pulse, interval=250)
-x_accel_plot=FuncAnimation(figure_x_accel, graph_x_accel, interval=250)
-y_accel_plot=FuncAnimation(figure_y_accel, graph_y_accel, interval=250)
-z_accel_plot=FuncAnimation(figure_z_accel, graph_z_accel, interval=250)
+temp_mcu_plot = FuncAnimation(figure_temp_mcu, graph_temp_mcu, interval=100)
+temp_plot = FuncAnimation(figure_temp, graph_temp, interval=100)
+pulse_plot=FuncAnimation(figure_pulse, graph_pulse, interval=100)
+x_accel_plot=FuncAnimation(figure_x_accel, graph_x_accel, interval=100)
+y_accel_plot=FuncAnimation(figure_y_accel, graph_y_accel, interval=100)
+z_accel_plot=FuncAnimation(figure_z_accel, graph_z_accel, interval=100)
 
 pyplot.show()
