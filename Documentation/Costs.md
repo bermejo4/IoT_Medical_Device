@@ -10,5 +10,6 @@
 | Pulse Sensor Module | 1,38 - 6,99 € | Aliexpress - Amazon |
 | MPU6050 | 2,2 € | Amazon |
 | DS18B20 | 1,04 € | Amazon |
+| Battery | 4,29 € | Aliexpress |
 |  |  |  |
-| Total | 11,81 € | -- |
+| Total | 16,01 € | -- |
