@@ -43,8 +43,8 @@ Hasta el momento solo se ha hablado del internet de las cosas como un medio de l
 
 ------- 
 ### Proporsal-platform system:
-{Para ello he diseñado, construido e implementado un sistema...}
-1. Sensoring: {hacer incapie en este apartado que es tan importante tener sensores que nos sirvan para la función principal del sistema, como tener sensores secundarios que nos den información del funcionamiento del sistema en sí.} 
+ 
+1. Sensorization: {hacer incapie en este apartado que es tan importante tener sensores que nos sirvan para la función principal del sistema, como tener sensores secundarios que nos den información del funcionamiento del sistema en sí.} 
     - 3 external sensors:
         - Temperature sensor.
         - Pulse sensor.
@@ -52,13 +52,15 @@ Hasta el momento solo se ha hablado del internet de las cosas como un medio de l
     - 1 internal sensor:
         - Internal mcu temperature.
      
-2. Microcontroler and wifi module.
-3. Data transmission and format.
-4. Server.
-5. Data plotting.
+2. Data Collection:
+    Microcontroler and wifi module.
+
+3. Formatting and Transfer.
+4. Reception and Decision making.
 
 -------
 ### Implementation - Development:
+Materials and connections.
 
 -------
 ### Test and Results:
