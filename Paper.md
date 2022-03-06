@@ -43,8 +43,10 @@ Hasta el momento solo se ha hablado del internet de las cosas como un medio de l
 
 ------- 
 ### Proporsal-platform system:
- 
-1. Sensorization: {hacer incapie en este apartado que es tan importante tener sensores que nos sirvan para la función principal del sistema, como tener sensores secundarios que nos den información del funcionamiento del sistema en sí.} 
+
+1. Sensorization:  A sensor is a device that produces an output signal from a physical phenomenon perceived. One of the purposes of IoT is to transform all the real world phenomena into digital data to understand the world from a different point of view and for this task sensors are indispensable, helping humanity to perceive phenomena that sometimes they can not perceive on their on. 
+We can distinguish two classes of sensor in IoT; one is external sensor that helps the IoT device to develop its function, and the other is internal sensor that helps the IoT device to control how is everything about itself to care that it can develop its function without problems, and very often one kind of sensor is as important as the other.
+This device works with the following sensors:
     - 3 external sensors:
         - Temperature sensor.
         - Pulse sensor.
@@ -61,6 +63,12 @@ Hasta el momento solo se ha hablado del internet de las cosas como un medio de l
 -------
 ### Implementation - Development:
 Materials and connections.
+- Temperature Sensor:
+- Pulse Sensor:
+- Accelerometer:
+- Microcontroler: Raspberry Pi Pico: this is the brain of the hole system. 
+- Wi-Fi Module: 
+- 
 
 -------
 ### Test and Results:
@@ -100,3 +108,9 @@ Materials and connections.
 
 5. Conclusión/Trabajos futuros.
 6. +ANEXOS (código servidores y placa)
+
+
+----
+
+Bibliografía:
+
