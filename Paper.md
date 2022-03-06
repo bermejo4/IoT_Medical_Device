@@ -22,27 +22,10 @@ Regarding the issue of storage, thanks to the internet of things, we do not have
 
 Until now, the Internet of Things has only been discussed as a channel of reading and sending data, "monitoring", but the direction can be changed, and an external host, over the Internet of Things, can make responses accordingly to that data, and send it to our devices. It is true that if the device has a programmable microcontroller, these responses could be programmed without the need to incorporate the Internet of Things, but let's think bigger, let's think about how this device could be connected, for example, to an artificial intelligence located in a remote server or to a doctor, and that could offer answers according to a data pattern, for example the pulse of a person and a possible attack.
 
-----------
-
-{Se prevee que en un futuro la mayoría de los objetos cotidianos estén conectados a internet, para ello la industria global deberá afrontar el reto de desarrollar millones de dispositivos que puedan conectarse a internet de una forma eficaz. 
-
-Muchas de las industrias hasta el momento solo estaban especializadas en la creación de su producto pero ahora, en la mayoría de los casos,  deben hacer frente al desarrollo e incorporación de una tecnología desconocida para ellos que consiste en la conectividad de sus aparatos a internet, y para ello tendrán que destinar recursos y dinero a esta labor, desde personal especializado hasta las compra de material como microcontroladores o módulos de red.  
-
-Hoy en día, gracias a los avances de la tecnología es posible fabricar pequeños dispositivos IoT con facilidad debido a que el tamaño de los chips con los que se fabrican los modulos de red son de apenas unos centímetros de tamaño y el coste es de menos de 2$ por modulo, por lo tanto fabricar de cero, o transformar un objeto normal en uno IoT, es bastante asequible haciendo que este nuevo sector de la tecnología crezca imparablemnte. 
-
-Una de las industrias que deberán hacer frente a este cambio será la industria de la instrumentación médica para conectar a internet todos sus aparatos médicos, que sea cual sea su función en última instancia están destinados a la obtención de datos fisiológicos muy útiles para su posterior análisis y acorde a ellos una toma de decisión adecuada.
-
-Hay algunas razones por las que es interesante enviar datos generados o recopilados por dispositivos médicos a través de Internet. Una de ellas es porque muchos de los dispositivos médicos suelen ser de pequeño tamaño y para almacenar todos los datos que recopilan necesitarían una memoria incorporada al aparato, si bien las dimensiones de la memoría no serían mucho problema, si que lo sería el coste adicional de esta dependiendo de su capacidad y la posterior molestia de tener que volcar todos los datos a un software corriendo en un ordenador o servidor, por lo tanto, pasando a uno de las siguientes motivos, los datos ya no serían en tiempo real. Algo que permite internet de las cosas es monitorear en tiempo real, ya que la información según se obtiene se envía a internet en el instante. 
-Con respecto al tema del almacenamiento gracias a internet de las cosas no tenemos que preocuparnos en tener una memoria en nuestro aparato ya que podemos tener una base de datos remota a la que gracias a internet estemos enviando todos los datos tomados por nuestro sistema médico.
-
-Hasta el momento solo se ha hablado del internet de las cosas como un medio de lectura y envío de datos, "monitoreo", pero se puede cambiar el sentido, y que un equipo externo, a través de internet de las cosas, efectue respuestas acorde a esos datos y las envíe a nuestro aparato. Es verdad, que si el aparato dispone de un microcontrolador programable esas respuestas se podrían programar sin la necesidad de incorporar internet de las cosas, pero pensemos más a lo grande, pensemos como ese aparato se podría conectar por ejemplo a una inteligencia artificial ubicada en un servidor remoto , y que pudiese ofrecer respuestas acorde a un patron de datos, por ejemplo el pulso de una persona y un posible ataque.
-
-
-}
-
-
 ------- 
 ### Proporsal-platform system:
+As mentioned before, with today’s technology it is quite simple to develop a system based on the Internet of Things. With this in mind I have developed a low cost system based on the internet of things and whose main function is to monitor the temperature, pulse and movements of a patient; and send it all to an external server where it will be represented graphically for the future supervision of a professional or an artificial intelligence. 
+We can distinguish several phases that comprise in the operation of the system:
 
 1. Sensorization:  A sensor is a device that produces an output signal from a physical phenomenon perceived. One of the purposes of IoT is to transform all the real world phenomena into digital data to understand the world from a different point of view and for this task sensors are indispensable, helping humanity to perceive phenomena that sometimes they can not perceive on their on. 
 We can distinguish two classes of sensor in IoT; one is external sensor that helps the IoT device to develop its function, and the other is internal sensor that helps the IoT device to control how is everything about itself to care that it can develop its function without problems, and very often one kind of sensor is as important as the other.
@@ -68,7 +51,7 @@ Materials and connections.
 - Accelerometer:
 - Microcontroler: Raspberry Pi Pico: this is the brain of the hole system. 
 - Wi-Fi Module: 
-- 
+
 
 -------
 ### Test and Results:
@@ -82,6 +65,32 @@ Materials and connections.
 
 
 
+
+-------
+-------
+## Paper español:
+
+#### Intro:
+
+
+{Se prevee que en un futuro la mayoría de los objetos cotidianos estén conectados a internet, para ello la industria global deberá afrontar el reto de desarrollar millones de dispositivos que puedan conectarse a internet de una forma eficaz. 
+
+Muchas de las industrias hasta el momento solo estaban especializadas en la creación de su producto pero ahora, en la mayoría de los casos,  deben hacer frente al desarrollo e incorporación de una tecnología desconocida para ellos que consiste en la conectividad de sus aparatos a internet, y para ello tendrán que destinar recursos y dinero a esta labor, desde personal especializado hasta las compra de material como microcontroladores o módulos de red.  
+
+Hoy en día, gracias a los avances de la tecnología es posible fabricar pequeños dispositivos IoT con facilidad debido a que el tamaño de los chips con los que se fabrican los modulos de red son de apenas unos centímetros de tamaño y el coste es de menos de 2$ por modulo, por lo tanto fabricar de cero, o transformar un objeto normal en uno IoT, es bastante asequible haciendo que este nuevo sector de la tecnología crezca imparablemnte. 
+
+Una de las industrias que deberán hacer frente a este cambio será la industria de la instrumentación médica para conectar a internet todos sus aparatos médicos, que sea cual sea su función en última instancia están destinados a la obtención de datos fisiológicos muy útiles para su posterior análisis y acorde a ellos una toma de decisión adecuada.
+
+Hay algunas razones por las que es interesante enviar datos generados o recopilados por dispositivos médicos a través de Internet. Una de ellas es porque muchos de los dispositivos médicos suelen ser de pequeño tamaño y para almacenar todos los datos que recopilan necesitarían una memoria incorporada al aparato, si bien las dimensiones de la memoría no serían mucho problema, si que lo sería el coste adicional de esta dependiendo de su capacidad y la posterior molestia de tener que volcar todos los datos a un software corriendo en un ordenador o servidor, por lo tanto, pasando a uno de las siguientes motivos, los datos ya no serían en tiempo real. Algo que permite internet de las cosas es monitorear en tiempo real, ya que la información según se obtiene se envía a internet en el instante. 
+Con respecto al tema del almacenamiento gracias a internet de las cosas no tenemos que preocuparnos en tener una memoria en nuestro aparato ya que podemos tener una base de datos remota a la que gracias a internet estemos enviando todos los datos tomados por nuestro sistema médico.
+
+Hasta el momento solo se ha hablado del internet de las cosas como un medio de lectura y envío de datos, "monitoreo", pero se puede cambiar el sentido, y que un equipo externo, a través de internet de las cosas, efectue respuestas acorde a esos datos y las envíe a nuestro aparato. Es verdad, que si el aparato dispone de un microcontrolador programable esas respuestas se podrían programar sin la necesidad de incorporar internet de las cosas, pero pensemos más a lo grande, pensemos como ese aparato se podría conectar por ejemplo a una inteligencia artificial ubicada en un servidor remoto , y que pudiese ofrecer respuestas acorde a un patron de datos, por ejemplo el pulso de una persona y un posible ataque.
+}
+
+#### Propuesta:
+
+{Como se ha mencionado antes, con la tecnología de hoy en día es bastante sencillo desarrollar un sistema basado en internet de las cosas. ~~para monitorear parametros fisiológicos de un paciente y así ayudar en el diagnisto o control de él~~. Teniendo esto en cuenta he desarrollado un sistema de bajo coste basado en internet de las cosas y cuya función principal es monitorear la temperatura, pulso y movimientos de un paciente; y enviar todo ello a un servidor externo donde será representado graficamente para la futura supervisión de un profesional o de una inteligencia artificial. 
+Podemos distinguir varias fases que comprenden en el funcionamiento del sistema:}
 
 -------
 -------
