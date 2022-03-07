@@ -31,26 +31,42 @@ We can distinguish several phases that comprise in the operation of the system:
 We can distinguish two classes of sensor in IoT; one is external sensor that helps the IoT device to develop its function, and the other is internal sensor that helps the IoT device to control how is everything about itself to care that it can develop its function without problems, and very often one kind of sensor is as important as the other.
 This device works with the following sensors:
     - 3 external sensors:
-        - Temperature sensor.
+        - Temperature sensor. 
         - Pulse sensor.
         - Accelerometer.
     - 1 internal sensor:
         - Internal mcu temperature.
      
 2. Data Collection:
-    Microcontroler and wifi module.
+The sensors send all physics phenomena which collect to a microcontroller in form of anolog signal (many of the physiological signals are signals of this kind), that sample and cuantificate  
+
+The sensors send all the physical phenomenona which have been collected to a microcontroller in the form of an analog signal (the majority of physiological signals are signals of this type) that will be responsible for sampling and quantifying (assign numerical values to the input signal) to transform it into manageable digital data. In some cases the signal already comes digitalized from the sensors, in this case the microcontroller only has to collect it following the communication protocol used by the sensor in question.(SPI, I2C, UART, or one of its own).
+
+{Los sensores envían todos los fenomenos físicos que recopilan a un microcontrolador en forma de señal analógica (la gran mayoría de las señales fisiológicas son señales de este tipo) que se encargará de muestrear y cuantificar (asignar valores numéricos a la señal que llega) para así transformarla en datos digitales manejables. En algunos casos la señal ya viene de los sensores digitalizada, en este caso el microcontrolador solo tiene que recogerla siguiendo el protocolo de comunicación que utilice el sensor en cuestión.(SPI, I2C, UART, o uno propio)}
 
 3. Formatting and Transfer.
+Once the microcontroller has the data for a specific time, it must prepare them for shipment. It is important to detail a format for the shipment that is distinguishable later in the reception, clearly marking the distinction between data collected from different sensors. For this I chose to send them formatted by JSON, a text format for sending data, widely used, easy to handle both at source and destination.
+The TCP/IP communication model is used to transfer the data.
+
+{Una vez que el microcontrolador ya dispone de los datos correspondientes a un tiempo concreto, los debe preparar para el envío. Es importante detallar un formato para el envío que sea distinguible posteriormente en la recepción, marcando claramente la distinción entre datos recopilados de sensores diferentes. Para ello opté por enviarlos formateados mediante JSON, un formato de texto para el envío de datos ampliamente utilizado, fácil de manejar tanto en el origen como en el destino.
+Para transferir los datos se utiliza el modelo de comunicación de redes TCP/IP. }
+
 4. Reception and Decision making.
 
+At the destination the data is unformat and stored depending on the sensor to which they belong, and depending, if there is more than one, on the microcontroller from where they come. Subsequently, these data can be represented in many ways, using an array, a graph... To facilitate the final work, which will be decision making. Depending on what the data set means, a decision will be made according to them, either by a medical entity or by an artificial intelligence
+
+
+{En el destino los datos son desformateados y almacenados dependiendo del sensor al que pertenezcan, y dependiendo, si hubiera más de uno, del microcontrolador de donde provengan. Posteriormente esos datos se pueden representar de muchas maneras, mediante un array, una gráfica... Para facilitar así la labor final, que será la toma de decisión. Dependiendo de lo que signifique el conjunto de los datos se tomará una decisión acorde a ellos, ya sea por parte de una entidad médica o por una inteligencia artificial}
+
 -------
-### Implementation - Development:
+### Implementation & configuration:
 Materials and connections.
-- Temperature Sensor:
-- Pulse Sensor:
-- Accelerometer:
+- Temperature Sensor: to measure the temperature I use a sensor called ds18b20 connected to the microcontroler throught a resistence of 4,7 kOhms to the pin gpio X of the Raspberry Pi Pico. (Figure 2.1)
+- Pulse Sensor: to obtain the pulse signal I use a module without a specific name connected directly to the pin gpio X of the Raspberry Pi Pico. It sends an analogical signal to it.(Figure 2.2)
+- Accelerometer: To obtain the movements of the patient I use a accelerometer called mpu5060. It uses a I2C communication protocol so it needs two i2c pins. The Slave Data Address pin (SDA) is connected to the pin X, and the Slave Clock pin (SCL) is connected to the pin X.
+
 - Microcontroler: Raspberry Pi Pico: this is the brain of the hole system. 
-- Wi-Fi Module: 
+- Wi-Fi Module: esp8266.
 
 
 -------
