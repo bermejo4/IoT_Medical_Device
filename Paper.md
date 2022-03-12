@@ -7,15 +7,23 @@ Desarrollo de un sistema de monitorización médica basado en internet de las co
 -------
 ### Introduction:
 
-Nowadays everything is connected to the Internet from a computer or server to a fridge or a house, going through different industries and work environments to places of leisure or our own homes, and all these are known as Internet of Things, or also denoted with its initials as IoT.
+The Internet of Things (IoT) term refers to the collective network of connected devices and the technology that facilitates communication between devices and the cloud, as well as between the devices themselves [1]. Nowadays everything is connected to the Internet from a computer or server to a fridge or a house, going through different industries and work environments to places of leisure or our own homes. In [2], Cisco, one of the huge networks company in the world, says that according to their analysis, IoT devices will account for 50 percent (14.7 billion) of all global networked devices by 2023. 
 
-It is expected that in the future most everyday objects will be connected to the Internet, for this the global industry will have to face the challenge of developing millions of devices that can connect to the Internet in an efficient way.
+There is no doubt that this technology is growing unstoppably and everyday more companies and sectors incorporate it. One of the industries that will have to face this change will be the medical instrumentation industry to connect all its medical devices to the Internet, which, whatever their function, are ultimately intended to obtain very useful physiological data for later analysis and according to them an adequate decision making.
 
-Many of the industries until now were only specialized in the creation of their product but now, in most cases, they must face the development and incorporation of a technology unknown to them that consists of the connectivity of their devices to the Internet, and for this they will have to allocate resources and money to this work, from specialized personnel to the purchase of material such as microcontrollers or network modules.
+There are abundance of propietary IoT healthcare platforms nowadays, for example, Apple Watch Series 3 [3] combined with "Health" App [4] can overwatch the ECG, the oximetry, steps or sleep. And the same its competitors like Samsung (Samsung Galaxy Watch 4 and "Samsung Health" App). But these systems and devices are very expensive together, with prices above 1000$, if you thing about smartwathes can't work propertly without a smartphone. In many cases, these products are not scalable or modifiable because don't provide open-source software or hardware features.
+
+Also there are specialized healthcare monitoring IoT hardware platforms like Mysignals [5], property of Libelium, a IoT dedicated company. This product is based in arduino and can collect a lot of physiological signals from sensors like Temperature, glucometer, ECG, EMG, SP02... And all open source, so it is more scalable than previous ones, or it was, because today MySignals is no longer available.
+
+
+
+~~It is expected that in the future most everyday objects will be connected to the Internet, for this the global industry will have to face the challenge of developing millions of devices that can connect to the Internet in an efficient way.~~
+
+~~Many of the industries until now were only specialized in the creation of their product but now, in most cases, they must face the development and incorporation of a technology unknown to them that consists of the connectivity of their devices to the Internet, and for this they will have to allocate resources and money to this work, from specialized personnel to the purchase of material such as microcontrollers or network modules.~~
 
 Today, thanks to advances in technology, it is possible to manufacture small IoT devices with ease because the size of the chips with which the network modules are manufactured are only a few centimeters in size and the cost is less than $2 per module, therefore manufacturing from scratch, or transforming a normal object into an IoT one, is quite affordable, making this new sector of technology grow unstoppably.
 
-One of the industries that will have to face this change will be the medical instrumentation industry to connect all its medical devices to the Internet, which, whatever their function, are ultimately intended to obtain very useful physiological data for later analysis and according to them an adequate decision making.
+~~One of the industries that will have to face this change will be the medical instrumentation industry to connect all its medical devices to the Internet, which, whatever their function, are ultimately intended to obtain very useful physiological data for later analysis and according to them an adequate decision making.~~
 
 There are some reasons about why is interesant to send data that are generated or collected by medical devices over the Internet. One of them is because many of the medical devices are usually small in size and to store all the data they collect they would need a memory built into the device, although the dimensions of the memory would not be much of a problem, the additional cost of this would be, depending on its capacity, and the subsequent inconvenience of having to dump all the data to a software running on a computer or server, therefore, moving to one of the following reasons, the data would not be seen in real time. Something that allows the Internet of Things is to monitor in real time, since the information as it is obtained is sent to the Internet instantly.
 Regarding the issue of storage, thanks to the internet of things, we do not have to worry about having a memory in our device, since we can have a remote database, to which, thanks to the internet, we are sending all the data taken by our medical system.
@@ -139,3 +147,10 @@ Podemos distinguir varias fases que comprenden en el funcionamiento del sistema:
 
 Bibliografía:
 
+
+referencias:
+[1] https://aws.amazon.com/es/what-is/iot/ 
+[2] "Cisco Annual Internet Report (2018–2023) White Paper": https://www.cisco.com/c/en/us/solutions/collateral/executive-perspectives/annual-internet-report/white-paper-c11-741490.html
+[3] https://www.apple.com/es/healthcare/apple-watch/
+[4] https://www.apple.com/es/ios/health/
+[5] http://www.my-signals.com/ 
