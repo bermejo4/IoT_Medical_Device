@@ -13,7 +13,12 @@ There is no doubt that this technology is growing unstoppably and everyday more 
 
 There are abundance of propietary IoT healthcare platforms nowadays, for example, Apple Watch Series 3 [3] combined with "Health" App [4] can overwatch the ECG, the oximetry, steps or sleep. And the same its competitors like Samsung (Samsung Galaxy Watch 4 and "Samsung Health" App). But these systems and devices are very expensive together, with prices above 1000$, if you thing about smartwathes can't work propertly without a smartphone. In many cases, these products are not scalable or modifiable because don't provide open-source software or hardware features.
 
-Also there are specialized healthcare monitoring IoT hardware platforms like Mysignals [5], property of Libelium, a IoT dedicated company. This product is based in arduino and can collect a lot of physiological signals from sensors like Temperature, glucometer, ECG, EMG, SP02... And all open source, so it is more scalable than previous ones, or it was, because today MySignals is no longer available.
+Also there are specialized healthcare monitoring IoT hardware platforms like Mysignals [5], property of Libelium, a IoT dedicated company. This product based on arduino can collect a lot of physiological signals from sensors like Temperature, glucometer, ECG, EMG, SP02... And all open source, so it is more scalable than previous ones, or it was, because today MySignals is no longer available.
+
+In the work [6] authors cover the posible design of efficient medical IoT sensor nodes in terms of low-cost, low power-consumption, and increased data accuracy based on open-source platforms. It is performed with a Arduino Uno attached to a Raspberry Pi, but the cost of this elements (together more than 60$ nowadays) is still high compared to my proporsal. And in [7] they create a generic clothing technology to measure SPO2, electro dermal activity, and body temperature implemented with a Arduino Lily-pad, although they don't send data through a wireless model, ideed it's one of their future enhancement. A wearable sensor-based human physical activity recognition is shown in the article [8] using MetaMotion Metawear as a sensor [9] and connecting it through bluetooth to a smart-phone to send the data over the Internet to a Web Server. The problem with this is that two connections must be established as opposed to a single connection in my proposed model, and with each connection the probabilities of failures increase, so the architecture can be minimized using only one device to transfer data to the cloud.
+
+
+
 
 
 
@@ -154,3 +159,7 @@ referencias:
 [3] https://www.apple.com/es/healthcare/apple-watch/
 [4] https://www.apple.com/es/ios/health/
 [5] http://www.my-signals.com/ 
+[6] https://www.mdpi.com/2079-9292/8/2/178
+[7] Application of Arduino Based Platform for Wearable Health Monitoring System.
+[8] Wearable Internet-of-Things platform for human activity recognition and health care.
+[9] https://mbientlab.com/metamotionr/
