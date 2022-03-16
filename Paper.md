@@ -20,7 +20,7 @@ In the work [6] authors cover the posible design of efficient medical IoT sensor
 Within the context discussed above, this article tackle the next objectives, apart from the design of an IoT platform to monitorize patients in real time:
 - First, a wearable small size device with a wireless connection to transmit the data collected from its sensors, focusing in a TCP/IP model to that purpose.
 - Second, a low cost system, less than 18$, using components easy to buy nowadays in the Internet and cheap comparated with others actual models.
-- Third, a scalable IoT project. It is used for a medical purpose, with 3 main sensors, but some others could replace them or be added depending on pins availables and the protocol connection used.
+- Third, a scalable IoT project. It is used for a medical purpose, with 3 main sensors, but some others could replace them or be added depending on pins availables and the protocol connection used for medical field too or for other that we want, or ideed combined them, with only a few changes. 
 
 
 
