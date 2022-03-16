@@ -13,16 +13,18 @@ There is no doubt that this technology is growing unstoppably and every day more
 
 There are an abundance of proprietary IoT healthcare platforms nowadays, for example, Apple Watch Series 3 [3] combined with "Health" App [4] can overwatch the ECG, the oximetry, steps or sleep. And the same its competitors like Samsung (Samsung Galaxy Watch 4 and "Samsung Health" App). But these systems and devices are very expensive together, with prices above 1000$, if you think about smartwathes can't work property without a smartphone. In many cases, these products are not scalable or modifiable because don't provide open-source software or hardware features.
 
-Also, there are specialized healthcare monitoring IoT hardware platforms like Mysignals [5], property of Libelium, a IoT dedicated company. This product based on Arduino can collect a lot of physiological signals from sensors like Temperature, glucometer, ECG, EMG, SP02... And all open source, so it is more scalable than previous ones, or it was, because today MySignals is no longer available.
+Also, there are specialized healthcare monitoring IoT hardware platforms like Mysignals [5], property of Libelium, a IoT dedicated company. This product based on Arduino can collect a lot of physiological signals from sensors like Temperature, glucometer, ECG, EMG, SP02... And all open source, so it is more scalable than previous ones, or it was, because today MySignals is no longer available. Another example of multisensory hardware platform for measure physiological data is Bitalino [6], but it only works with Bluetooth and is too expensive being an educational platform. 
 
-In the work [6] authors cover the possible design of efficient medical IoT sensor nodes in terms of low-cost, low power-consumption, and increased data accuracy based on open-source platforms. It is performed with an Arduino UNO attached to a Raspberry Pi, but the costs of this elements (together more than 60$ nowadays) are still high compared to my proposal. And in [7] they create a generic clothing technology to measure SPO2, electro dermal activity, and body temperature implemented with an Arduino Lily-pad, although they don't send data through a wireless model, indeed it's one of their future enhancement. A wearable sensor-based human physical activity recognition is shown in the article [8] using MetaMotion Metawear as a sensor [9] and connecting it through Bluetooth to a smart-phone to send the data over the Internet to a Web Server. The problem with this is that two connections must be established as opposed to a single connection in my proposed model, and with each connection the probabilities of failures increase, so the architecture can be minimized using only one device, to transfer data to the cloud.
+So many articles talk about the use of IoT for transmitting data acquire from the human body. In the work [7] authors cover the possible design of efficient medical IoT sensor nodes in terms of low-cost, low power-consumption, and increased data accuracy based on open-source platforms. It is performed with an Arduino UNO attached to a Raspberry Pi, but the costs of this elements (together more than 60$ nowadays) are still high compared to my proposal. And in [8] they create a generic clothing technology to measure SPO2, electro dermal activity, and body temperature implemented with an Arduino Lily-pad, although they don't send data through a wireless model, indeed it's one of their future enhancement. A wearable sensor-based human physical activity recognition is shown in the article [9] using MetaMotion Metawear as a sensor [10] and connecting it through Bluetooth to a smart-phone to send the data over the Internet to a Web Server. The problem with this is that two connections must be established as opposed to a single connection in my proposed model, and with each connection the probabilities of failures increase, so the architecture can be minimized using only one device, to transfer data to the cloud.
 
-Within the context discussed above, this article tackles, apart from the design of an IoT platform to monitor patients in real time, the following targets:
+Bearing in mind everything said, current work focuses on the design and implementation of a device whom three sensors are connected, to measure temperature, pulse and movement, and send it through the Internet to a server that represents the data received graphically, to monitor patients of a Hospital or old people's home in a non-intrusive way when it's not necessary.
+
+Within the context discussed above, this article tackles, the following targets:
 - First, a wearable small size device with a wireless connection to transmit the data collected from its sensors, focusing on a TCP/IP model for that purpose.
 - Second, a low cost system, less than 18$, using components easy to buy nowadays on the Internet and cheap compared with others actual models.
 - Third, a scalable IoT project. It is used for a medical purpose, with 3 main sensors, but some others could replace them or be added depending on pins available and the protocol connection used, both in the medical field and for other field that we want, or indeed combined them, with only a few changes. 
 
-Bearing in mind everything said.
+
 
 
 
@@ -164,7 +166,8 @@ referencias:
 [3] https://www.apple.com/es/healthcare/apple-watch/
 [4] https://www.apple.com/es/ios/health/
 [5] http://www.my-signals.com/ 
-[6] https://www.mdpi.com/2079-9292/8/2/178
-[7] Application of Arduino Based Platform for Wearable Health Monitoring System.
-[8] Wearable Internet-of-Things platform for human activity recognition and health care.
-[9] https://mbientlab.com/metamotionr/
+[6] https://bitalino.com/
+[7] https://www.mdpi.com/2079-9292/8/2/178
+[8] Application of Arduino Based Platform for Wearable Health Monitoring System.
+[9] Wearable Internet-of-Things platform for human activity recognition and health care.
+[10] https://mbientlab.com/metamotionr/
