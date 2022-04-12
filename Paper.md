@@ -43,13 +43,21 @@ Regarding the issue of storage, thanks to the internet of things, we do not have
 Until now, the Internet of Things has only been discussed as a channel of reading and sending data, "monitoring", but the direction can be changed, and an external host, over the Internet of Things, can make responses accordingly to that data, and send it to our devices. It is true that if the device has a programmable microcontroller, these responses could be programmed without the need to incorporate the Internet of Things, but let's think bigger, let's think about how this device could be connected, for example, to an artificial intelligence located in a remote server or to a doctor, and that could offer answers according to a data pattern, for example the pulse of a person and a possible attack.
 
 ------- 
-### Proporsal-platform system:
-As mentioned before, with today’s technology it is quite simple to develop a system based on the Internet of Things. With this in mind I have developed a low cost system based on the internet of things and whose main function is to monitor the temperature, pulse and movements of a patient; and send it all to an external server where it will be represented graphically for the future supervision of a professional or an artificial intelligence. 
-We can distinguish several phases that comprise in the operation of the system:
+### Proporsal:
 
-1. Sensorization:  A sensor is a device that produces an output signal from a physical phenomenon perceived. One of the purposes of IoT is to transform all the real world phenomena into digital data to understand the world from a different point of view and for this task sensors are indispensable, helping humanity to perceive phenomena that sometimes they can not perceive on their on. 
+Teniendo en cuenta los objetivos anteriormente mencionados mi propuesta para llevarlos a cabo es la creación de un sistema en el que el principal actor sea un dispositivo IoT desarrollado por mi cuyo funcionamiento se base en la recopilación de datos fisiológicos y del propio dispositivo mediante sensores; el empaquetamiento y el envío de ellos; y la recepción de estos en un sistema experto externo.
+Podemos caracterizar ese sistema teniendo en mente la siguiente arquitectura:
+- Sensorization.
+- Data Collection.
+- Formatting and Transfer.
+- Reception and Decision making.
+
+~~As mentioned before, with today’s technology it is quite simple to develop a system based on the Internet of Things. With this in mind I have developed a low cost system based on the internet of things and whose main function is to monitor the temperature, pulse and movements of a patient; and send it all to an external server where it will be represented graphically for the future supervision of a professional or an artificial intelligence.~~ 
+~~We can distinguish several phases that comprise in the operation of the system:~~
+
+1. Sensorization:  A sensor is a device that produces an output signal from a physical phenomenon perceived. ~~One of the purposes of IoT is to transform all the real world phenomena into digital data to understand the world from a different point of view and for this task sensors are indispensable, helping humanity to perceive phenomena that sometimes they can not perceive on their on.~~
 We can distinguish two classes of sensor in IoT; one is external sensor that helps the IoT device to develop its function, and the other is internal sensor that helps the IoT device to control how is everything about itself to care that it can develop its function without problems, and very often one kind of sensor is as important as the other.
-This device works with the following sensors:
+The proposed device works with the following sensors:
     - 3 external sensors:
         - Temperature sensor. 
         - Pulse sensor.
@@ -58,9 +66,9 @@ This device works with the following sensors:
         - Internal mcu temperature.
      
 2. Data Collection:
-The sensors send all physics phenomena which collect to a microcontroller in form of anolog signal (many of the physiological signals are signals of this kind), that sample and cuantificate  
+~~The sensors send all physics phenomena which collect to a microcontroller in form of anolog signal (many of the physiological signals are signals of this kind), that sample and cuantificate~~  
 
-The sensors send all the physical phenomenona which have been collected to a microcontroller in the form of an analog signal (the majority of physiological signals are signals of this type) that will be responsible for sampling and quantifying (assign numerical values to the input signal) to transform it into manageable digital data. In some cases the signal already comes digitalized from the sensors, in this case the microcontroller only has to collect it following the communication protocol used by the sensor in question.(SPI, I2C, UART, or one of its own).
+The sensors send all the physical phenomenona which have been collected to a microcontroller in the form of an analog signal (the majority of physiological signals are signals of this type) that will be responsible for sampling and quantifying (assign numerical values to the input signal) to transform it into manageable digital data. In some cases the signal already comes digitalized from the sensors, in this case the microcontroller only has to collect it following the communication protocol used by the sensor in question (SPI, I2C, UART, or one of its own).
 
 {Los sensores envían todos los fenomenos físicos que recopilan a un microcontrolador en forma de señal analógica (la gran mayoría de las señales fisiológicas son señales de este tipo) que se encargará de muestrear y cuantificar (asignar valores numéricos a la señal que llega) para así transformarla en datos digitales manejables. En algunos casos la señal ya viene de los sensores digitalizada, en este caso el microcontrolador solo tiene que recogerla siguiendo el protocolo de comunicación que utilice el sensor en cuestión.(SPI, I2C, UART, o uno propio)}
 
