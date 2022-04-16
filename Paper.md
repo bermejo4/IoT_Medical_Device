@@ -45,12 +45,20 @@ Until now, the Internet of Things has only been discussed as a channel of readin
 ------- 
 ### Proporsal:
 
-Teniendo en cuenta los objetivos anteriormente mencionados mi propuesta para llevarlos a cabo es la creación de un sistema en el que el principal actor sea un dispositivo IoT desarrollado por mi cuyo funcionamiento se base en la recopilación de datos fisiológicos y del propio dispositivo mediante sensores; el empaquetamiento y el envío de ellos; y la recepción de estos en un sistema experto externo.
+{Teniendo en cuenta los objetivos anteriormente mencionados mi propuesta para llevarlos a cabo es la creación de un sistema en el que el principal actor sea un dispositivo IoT desarrollado por mi cuyo funcionamiento se base en la recopilación de datos fisiológicos y del propio dispositivo mediante sensores; el empaquetamiento y el envío de ellos; y la recepción de estos en un sistema experto externo.
 Podemos caracterizar ese sistema teniendo en mente la siguiente arquitectura:
 - Sensorization.
 - Data Collection.
 - Formatting and Transfer.
+- Reception and Decision making.}
+
+Taking account the objetives recently described my proporsal to handle on is the development of a system in whch the main character will be an IoT device built by me whose function is based on the physiological patient and inter device data collection by sensors; then the packeting and transfer of them; and finally their reception in an extern system. Bearing in mind this, we can describe the system with the following architecture:
+- Sensorization.
+- Data Collection.
+- Formatting and Transfer.
 - Reception and Decision making.
+
+
 
 ~~As mentioned before, with today’s technology it is quite simple to develop a system based on the Internet of Things. With this in mind I have developed a low cost system based on the internet of things and whose main function is to monitor the temperature, pulse and movements of a patient; and send it all to an external server where it will be represented graphically for the future supervision of a professional or an artificial intelligence.~~ 
 ~~We can distinguish several phases that comprise in the operation of the system:~~
@@ -89,12 +97,33 @@ At the destination the data is unformat and stored depending on the sensor to wh
 -------
 ### Implementation & configuration:
 Materials and connections.
-- Temperature Sensor: to measure the temperature I use a sensor called ds18b20 connected to the microcontroler throught a resistence of 4,7 kOhms to the pin gpio X of the Raspberry Pi Pico. (Figure 2.1)
-- Pulse Sensor: to obtain the pulse signal I use a module without a specific name connected directly to the pin gpio X of the Raspberry Pi Pico. It sends an analogical signal to it.(Figure 2.2)
-- Accelerometer: To obtain the movements of the patient I use a accelerometer called mpu5060. It uses a I2C communication protocol so it needs two i2c pins. The Slave Data Address pin (SDA) is connected to the pin X, and the Slave Clock pin (SCL) is connected to the pin X.
+- Temperature Sensor: to measure the temperature I use a sensor called ds18b20 connected to the microcontroller through a resistance of 4,7 kOhms to the pin gpio X of the Raspberry Pi Pico. (Figure 2)
+- Pulse Sensor: to obtain the pulse signal I use a module without a specific name, sometimes is called "Pulse Sensor for Arduino", connected directly to the pin gpio X of the Raspberry Pi Pico. It sends an analogical signal to it.(Figure 3)
+- Accelerometer: To obtain the movements of the patient I use an accelerometer called mpu5060. It uses an I2C communication protocol, so it needs two I2C pins. The Slave Data Address pin (SDA) is connected to the pin X, and the Slave Clock pin (SCL) is connected to the pin X.(Figure 4)
 
-- Microcontroler: Raspberry Pi Pico: this is the brain of the hole system. 
-- Wi-Fi Module: esp8266.
+- Microcontroller (mcu): Raspberry Pi Pico, this is the brain of the whole system. It has a dual core microcontroller chip (Rp2040) with a flexible clock of 133MHz, a SRAM of 264KB, 26 pins, 4 of it analog, two UART, two I2C and two SPI connections available. Also, there is a temperature sensor inside, accesible with software, to control mcu temperature. All the connections are shown in the figure 5.
+- Wi-Fi Module: ESP8266, one of the most famous WiFi module boards. In this project is used as a slave of the mcu through a UART connection. It is important to say that the connections of the wires must be done connecting Rx pin of the ESP8266 with the mcu Tx pin, and Tx of the ESP8266 with Rx mcu pin. Is necessary in some boards uses one pin of the ESP8266 feeded with 3.3V to enable the UART mode. 
+
+- Battery: LiPo battery of 3.7 V, 1000 mAh and 10x20x50 mm. These features are very relevant, 3.7 is the voltage that the microcontroller needs, dimensions match with its dimensions too, and the mAh will determine the durability of the battery depending on the whole consume.
+- Battery Charger: The module used as an intermediary between the battery, the microcontroller and the charger is called TP4056. It has a micro-usb plug, and two leds, red and blue, if red is blinking that means that the battery is charging, anf if blue bright and red extinguish means charge termination. Two wires will be connected to the Battery (Bat) and the other two will be connected to the mcu, one to power system pin (VSYS) and the other to the ground (Gnd) as is showed in the Figure 6.
+
+Once everything is connected it's time to configure the device with code. The Raspberry Pi Pico can be programmed with Micropython, C or C++. In this case the microcontroller has been programmed in Micropython, a lean and efficient implementation of the Python 3 programming language that includes a small subset of the Python standard library and is optimised to run on microcontrollers and in constrained environments [11]. It is important to say too that the ESP8266 works with AT commands, which consists of a series of short text strings which can be combined to produce commands for operations such as dialing, hanging up, and changing the parameters of a connection [12], transmitted through the UART communication, so Micropython handles the commands in the form of strings to implement the corresponding communication protocol; some useful AT commands employed are: 
+- AT: To test AT startup, also used to test the connection between the Rapberry Pi Pico and ESP8266.
+- AT+CWJAP="Network_name","Password" : To Search the Wi-Fi access point with the name "Network_name" and to connect to it with the password "Password".
+- AT+CIPSTART="TCP","192.168.12.147",9999 : To establish a TCP connection with a host with the IP address "192.168.12.147" and the port "9999".
+- AT+CIPSEND="String" : To send the information "String" in the form of string through the connection established.
+
+To understand the protocols used in the whole system previously the system must be described from a topological network point of view. The device transmit the information collected to a access point though Wi-Fi, and the access point send the information to a router which decides where send it. Once the information is sent though the Internet or a local network it arrives to the destination, a host or a server, as represent the Figure 8.
+
+Once the architecture of the system is understood, the protocols employed can be described. Bearing in mind the TCP/IP model and the third layer (transport layer) protocols, this system use TCP (Transmission Control Protocol) rather than UDP (User Datagram Protocol) to send the information to the remote host or server. The main differences between them are that TCP is a connection oriented and reliable protocol; and otherwise UDP is a connectionless and unreliable protocol. The data handled demands a reliable protocol because we are dealing with physiological data (can be considered sensitive data, one error in the data means that the patient is not ok). And a oriented connection protocol is needed because before to send the information we have to make sure that the destination is ready to receive it, although this kind of detail is less important than the reliable feature. Nevertheless, these TCP features pay its advantage in time, losing a little real time experience. It's true that UDP can be used to implement the features of TCP in the application layer of TCP/IP model improving times, but also gaining more complexity, this is out of the scope of this work.
+
+An implementation detail to take account in the transfer step is the format of the information. All is encapsulated in a JSON format with the following shape:
+{"Temp":"_","TempMcu":"_","PulseSig":"_","Acel_x":"_","Acel_y":"_","Acel_z":"_"}
+Being the "_" the information of each field measured. Then, the destination knows this format and extract the information of each field to represent it properly. 
+
+
+When the information finally reaches the destination it must be represented. For that purpose I write a server code in Python that receive the data and represent it in a graphical format with the Matplotlib[13] python library in real time. The code can be found here [14]. The server works with two threads one has the task of receiving the data and save it, and the other thread represents the data in graphs. There are 6 graphs, one of the pulse, another for the Temperature, 3 for each of the axes of the accelerometer and other for the temperature of the mcu.
+
 
 
 -------
@@ -179,3 +208,7 @@ referencias:
 [8] Application of Arduino Based Platform for Wearable Health Monitoring System.
 [9] Wearable Internet-of-Things platform for human activity recognition and health care.
 [10] https://mbientlab.com/metamotionr/
+[11] https://micropython.org/
+[12] https://en.wikipedia.org/wiki/Hayes_command_set
+[13] https://matplotlib.org/
+[14] https://github.com/bermejo4/Proyectos2/blob/main/Server/tcp_graficador_pico.py
