@@ -129,8 +129,18 @@ When the information finally reaches the destination it must be represented. For
 -------
 ### Test and Results:
 
+The final result of the device built is as the Figure 10 shows, It is a gadget of 20x40x50mm size. The whole consume is 110mA, so with a battery of 1000mAh full charged the autonomy could be of more or less 9 hours, at best. The coverage area of the device depends on the coverage area of the ESP8266, and it depends on the access point technology and antenna, so it is conditional on each circumstance, but some experiments have proven that with a normal access point the coverage area could be about 300 meters without obstacles [15].
+
+To test the system an access point is enabled with a smartphone where a computer and the IoT device are connected. First of all, the server must be running before to start the device, once it is, the device can be switched on, and after a little time of connection,between 3 or 5 seconds, the device begins to send the information to the server and when it receives it, the information is plotted in the graphs.
+
 -------
 ### Conclusion & Future Improvements.
+
+Este sistema podrá ayudar en un futuro a la supervisión de pacientes de una forma no intrusiva colocandose en hospitales y complejos asistenciales como residencia de ancianos, haciendo que el monitoreo en tiempo real sea más sencillo, barato y preservando recursos, mejorando así la sanidad de hoy en día.
+
+This system may help in the future to monitor patients in a non-intrusive way by being placed in hospitals and complex care such as nursing homes, making real-time monitoring easier, cheaper and conserving resources, thus improving today's healthcare.
+
+Future improvements encompass the utilization of MQTT protocols (MQTT message headers are small to optimize network bandwidth [16]), also to publish each measure as a topic in a MQTT broker to permit other devices or services access to the information. Something to improve the security could be the encryption of the communication and the authentication of the IoT device with the server to avoid third entity in the client-server relationship. And finally to make a comfortable user experience other improvement can be a Bi-directional communication to send instructions to the IoT device like the modification of the sampling rate.
 
 -------  
 
@@ -212,3 +222,5 @@ referencias:
 [12] https://en.wikipedia.org/wiki/Hayes_command_set
 [13] https://matplotlib.org/
 [14] https://github.com/bermejo4/Proyectos2/blob/main/Server/tcp_graficador_pico.py
+[15] https://www.youtube.com/watch?v=7BYdZ_24yg0 time 1:42 start the experiment without add other antenna.
+[16] https://mqtt.org/
