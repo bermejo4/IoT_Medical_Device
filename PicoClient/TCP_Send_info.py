@@ -503,7 +503,7 @@ def data_collector():
     pico=pico_data()
     #--------------------------------------------------
     #SENSOR TEMPERATURE
-    ow = onewire.OneWire(Pin(13)) #Prepara GPIO4 para usar con OneWire
+    ow = onewire.OneWire(Pin(16)) #Prepara GPIO4 para usar con OneWire
     sensor = DS18X20(ow) #define un sensor en ese pin
     direcciones = sensor.scan()  #Lee el ID del sensor conectado
     id=direcciones[0]
@@ -526,7 +526,7 @@ def data_collector():
     pico.temp_mcu=temperatura_mcu
     #----------------------------------------------------
     #PULSE SIGNAL
-    pulse_sensor=machine.ADC(2)
+    pulse_sensor=machine.ADC(0)
     conversion_factor = 3.3 / (65535)
     #while True:
     signal_value = pulse_sensor.read_u16()*conversion_factor
@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #--------------
     print(data_collector())
     
-    server_ip="192.168.250.227"
+    server_ip="192.168.245.227"
     server_port=9999
 
     print()
