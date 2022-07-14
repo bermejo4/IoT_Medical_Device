@@ -1,4 +1,4 @@
-# Proyectos2
+# IoT Medical Device Development:
 
 ## Objectives:
 - Electronic wireless system to collect physiological data from a patient and to deliver it to a server.
