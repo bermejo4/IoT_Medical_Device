@@ -64,6 +64,7 @@ The data is packeting using TCP/IP headers and then sending to the network throu
 The system architecture can be described from a topological network point of view, shown in Figure 1. 
 
 ![](/Documentation/paper_figures/figure1.png) 
+
 **Figure 1.** *Network topological architecture of the whole system.*
 
 The device is set with an IP address and a port number. It transmits the information collected to an access point through Wi-Fi, and the access point sends the information to a router which decides where to send it. Once the information is sent through the Internet or a local network and then it arrives at the destination, a server.
@@ -78,6 +79,7 @@ Being the "_" the information of each field measured. Then, the destination know
 When the information finally reaches the destination, it must be represented. For that purpose, a server code is written in Python that receive the data and represent it in a graphical format with the Matplotlib python library in real time. The server works with two threads, one has the task of receiving the data and save it, and the other thread represents the data in graphs, which are shown in the figure 2.
 
 ![](/Documentation/paper_figures/figure2.png) 
+
 **Figure 2.** *Data representation with graphs.*
 
 There are 6 graphs, one of the pulse sensor (green in Figure 2), another for the temperature (yellow in Figure 2), 3 for each of the axes of the accelerometer (purple in Figure 2) and other for the temperature of the mcu (red in the Figure 2). Each graph is represented in different windows, so the final user of the data can move and resize each graph depending on the screen size and which graph or graphs that are considered more important. Also, the Matplotlib frame representation gives some useful tools to manipulate the graphs. The server code is upload in [5].
@@ -87,27 +89,32 @@ The IoT device developed in this work uses:
 **Temperature Sensor:** a sensor DS18B20 is used to measure the temperature which is connected to the Raspberry Pi Pico (GPIO 16) through a resistance of 4,7 kΩ (Figure 3 and Figure 6). It’s price is lower than 1$.
 
 ![](/Documentation/paper_figures/figure3.png) 
+
 **Figure 3.** *DS18B20 connections with mcu.*
 
 **Pulse Sensor:** to obtain the pulse a module called "Pulse Sensor for Arduino", built with an APDS-9008 photo sensor and MCP6001 Op-Amp, is connected directly to the pin 31 (ADC0) of the Raspberry Pi Pico. It sends an analogical signal to it, wire pink of the Figure 4. It’s price is around 1$ and 3$.
 
 ![](/Documentation/paper_figures/figure4.png) 
+
 **Figure 4.** *Pulse Sensor connections with mcu.*
 
 **Accelerometer:** To obtain the movements the MPU5060 board is used. It employs an I2C communication protocol, so it needs two I2C pins. The Slave Data Address pin (SDA) is connected to the pin SDA 19, and the Slave Clock pin (SCL) is connected to the pin SDA 20 (Figures 5 and 6). Its price is around 2$.
 
 ![](/Documentation/paper_figures/figure5.png) 
+
 **Figure 5.**  *MPU5060 connections with mcu.*
 
 **Microcontroller (mcu):** Raspberry Pi Pico has a dual core microcontroller chip (Rp2040) with a flexible clock of 133MHz, a SRAM of 264KB, 26 pins, 4 of it analog, two UART, two I2C and two SPI connections available. Also, there is a temperature sensor inside accessible with software to control mcu temperature. The price of this microcontroller is around 5$. All the connections are shown in the figure 6.
 The Raspberry Pi Pico can be programmed with Micropython, C or C++. In this case the microcontroller has been programmed in Micropython, a lean and efficient implementation of the Python 3 programming language that includes a small subset of the Python standard library and is optimised to run on microcontrollers and in constrained environments.
 
 ![](/Documentation/paper_figures/figure6.png) 
+
 **Figure 6.** *Raspberry Pi Pico connections diagram.* 
 
 **Wi-Fi Module:** The ESP8266 Module is used as a slave of the mcu through a UART connection. The connections of the wires must be done connecting Rx pin of the ESP8266 with the mcu Tx pin, and Tx of the ESP8266 with Rx mcu pin. Is necessary in some boards uses one pin of the ESP8266 fed with 3.3V to enable the UART mode (Figure 7). Its price is 1$.
 
 ![](/Documentation/paper_figures/figure7.png) 
+
 **Figure 7.** *ESP8266 connections with mcu, white wire enable UART mode.* 
 
 The Wi-Fi module works with AT commands, which consists of a series of short text strings which can be combined to produce commands for operations such as dialing, hanging up, and changing the parameters of a connection; transmitted through the UART communication, so Micropython handles the commands in the form of strings to implement the corresponding communication protocol; some useful AT commands employed are: 
@@ -120,7 +127,8 @@ The Wi-Fi module works with AT commands, which consists of a series of short tex
 
 **Battery Charger:** The TP4056 module is used as an intermediary between the battery, the microcontroller and the charger. It has a micro-usb plug, and two leds, red and blue. If red is blinking that means that the battery is charging, and if blue bright and red extinguish means charge termination. Two wires will be connected to the battery (Bat) and the other two will be connected to the mcu, one to power system pin (VSYS) and the other to ground (Gnd), showed in the Figure 8. Its price is 0.3$.
 
-![](/Documentation/paper_figures/figure8.png) 
+![](/Documentation/paper_figures/figure8.png)
+
 **Figure 8.**  *TP4056 connections with mcu and battery.* 
 
 ### 5.	Results
@@ -128,6 +136,7 @@ The final prototype of the device built is as the Figure 9AB shows, whose size i
 A case is designed and printed in 3D with PLA to protect the device, and two straps have been added to attach the device to the arm, in the Figure 9CD.
 
 ![](/Documentation/paper_figures/figure9.png) 
+
 **Figure 9.** *Final device result.*
 
 The final price of whole device is, looking up to, 17,3$ and with a conservative estimate 15$, depending on where the components are bought.
@@ -144,8 +153,13 @@ Finally, I would like to express my gratitude to Eloy José Urendes Jiménez to 
 
 ### References
 [1]	Web of AWS where explain the terms around IoT: https://aws.amazon.com/es/what-is/iot/
+
 [2]	Cisco, “Cisco Annual Internet Report (2018–2023) White Paper”, March 9 2020 : https://www.cisco.com/c/en/us/solutions/collateral/executive-perspectives/annual-internet-report/white-paper-c11-741490.html
+
 [3]	Petrellis N, Birbas M, Gioulekas F. On the Design of Low-Cost IoT Sensor Node  e-Health Environments. Electronics. 2019; 8(2):178. https://doi.org/10.3390/electronics8020178
+
 [4]	A. Sugathan, G. G. Roy, G. J. Kirthyvijay and J. Thomson. Application of arduino based platform for wearable health monitoring system, 2013 IEEE 1st International Conference on Condition Assessment Techniques in Electrical Systems (CATCON), 2013, pp. 1-5 (ISBN: 978-1-4799-0083-1).
+
 [5]	Code in Github for the server that plots the information: https://github.com/bermejo4/IoT_Medical_Device/blob/main/Server/tcp_graficador_pico.py
+
 [6]	All the documentation and code of this project: https://github.com/bermejo4/IoT_Medical_Device
